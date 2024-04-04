@@ -1,2 +1,2 @@
 # BallonicBlast
-Videojeugo Unity 3d / Mobile Game
+Videojuego Unity 3d / Mobile Game
