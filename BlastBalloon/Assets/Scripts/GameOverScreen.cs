@@ -8,9 +8,36 @@ public class GameOverScreen : MonoBehaviour
     // Start is called before the first frame update
 
     public float fadeTime = 1f;
+    public GameObject First_StarIcon;
+    public GameObject Second_StarIcon;
+    public GameObject Third_StarIcon;
     public CanvasGroup canvasGroup;
     public RectTransform rectTransform;
     public List<GameObject> ballonsIcons = new List<GameObject>();
+
+
+    public IEnumerator StarsCompleted()
+    {
+
+        if (ProgressBar.FirstStar == true)
+        {
+            First_StarIcon.transform.DOScale(0.8f, 1.5f).SetEase(Ease.OutBounce);
+             yield return new WaitForSeconds(0.8f);
+        }
+        if (ProgressBar.SecondtStar == true)
+        {
+            Second_StarIcon.transform.DOScale(0.8f, 1.5f).SetEase(Ease.OutBounce);
+            yield return new WaitForSeconds(0.8f);
+        }
+        if (ProgressBar.ThirdStar == true)
+        {
+            Third_StarIcon.transform.DOScale(0.8f, 1.5f).SetEase(Ease.OutBounce);
+            yield return new WaitForSeconds(0.8f);
+        }
+
+
+    }
+
 
     public void PanelFadeIn()
     {
@@ -30,6 +57,7 @@ public class GameOverScreen : MonoBehaviour
     void Start()
     {
         PanelFadeIn();
+        StartCoroutine(StarsCompleted());
     }
 
     // Update is called once per frame
@@ -48,7 +76,7 @@ public class GameOverScreen : MonoBehaviour
         foreach (var item in ballonsIcons)
         {
             item.transform.DOScale(1f,fadeTime).SetEase(Ease.OutBounce);
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.12f);
 
         }
 

@@ -105,9 +105,9 @@ public class Balloon : MonoBehaviour
 
                     if (CompareTag("Balloon"))
                     {
-                        // Aumentar el contador de puntuación si el globo es normal
+                        //Aumentar el contador de puntuación si el globo es normal
                         ScoreManager.scoreCount++;
-                        //AUMENTAR LA PUNTUACION DEL GLOBO REVENTADO PARA GAMEOVERSCREEN
+                        //AUMENTAR EL CONTADOR DEL MISMO GLOBO REVENTADO PARA GAMEOVERSCREEN
                         SpawnManagerBalloons.PopBalloon(gameObject.name);                     
 
                     }

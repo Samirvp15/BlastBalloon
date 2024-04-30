@@ -22,6 +22,10 @@ public class SpawnManagerBalloons : MonoBehaviour
     private int maxSameBombBalloons = 2;  // Máximo de globos iguales consecutivos
     private int sameBombBalloonCount = 0; // Contador de globos iguales instanciados
 
+    private int maxBalloons = 6;  // Máximo de globos iguales consecutivos
+    private int balloonCount = 0; // Contador de globos iguales instanciados
+
+
     // Diccionario para almacenar el contador de cada tipo de globo
     public static Dictionary<string, int> poppedBalloonsCount = new Dictionary<string, int>();
 
@@ -114,10 +118,17 @@ public class SpawnManagerBalloons : MonoBehaviour
                     objectToRespawn = bombBalloon[Random.Range(0, bombBalloon.Length)];
                     sameBombBalloonCount++; // Incrementar contador
                 }
+                else if (objectToRespawn.CompareTag("Balloon") && balloonCount < maxBalloons)
+                {
+                    //objectToRespawn = balloonPrefab[Random.Range(0, balloonPrefab.Length)];
+                    balloonCount++;
+                    sameBombBalloonCount = 0;  // Reiniciar contador
+                }
                 else
                 {
-                    objectToRespawn = balloonPrefab[Random.Range(0, balloonPrefab.Length)];
-                    sameBombBalloonCount = 0;  // Reiniciar contador
+                    Debug.Log("aaaaaaa");
+                    objectToRespawn = bombBalloon[Random.Range(0, bombBalloon.Length)];
+                    balloonCount = 0;  // Reiniciar contador
                 }
 
 
