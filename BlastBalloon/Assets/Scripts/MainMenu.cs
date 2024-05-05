@@ -18,13 +18,16 @@ public class MainMenu : MonoBehaviour
     public static int gamePlayed = 0;
     public static bool isRewarded = false;
 
-
-    //private ScoreManager scoreManager;
     // Start is called before the first frame update
 
     AudioManager audioManager;
     void Start()
     {
+        //RESTAURAR VALORES
+        Time.timeScale = 1;
+        gamePaused = false;
+        gameOver = false;
+
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         activeScreen = null;
     }
@@ -61,7 +64,7 @@ public class MainMenu : MonoBehaviour
         }*/
 
         SetActiveScreen(GameOverScreen);
-        isRewarded = false;
+        
     }
 
     public void Settings()
@@ -95,43 +98,24 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        
         SceneManager.LoadScene("GameScene");
-        ScoreManager.scoreCount = 0;
-
-
-        //StartCoroutine(DisplayBannerWithDelay());
-
-
     }
 
-    private IEnumerator DisplayBannerWithDelay()
-    { 
-        yield return new WaitForSeconds(1f);
-        AdsManager.Instance.interstitialAds.ShowAd();
-    }
 
     public void RestartGame()
     {
         audioManager.PlaySFXButton();
         //RESTAURAR VALORES
-        isRewarded = false;
-        ScoreManager.scoreCount = 0;
-        Time.timeScale = 1;
-        gamePaused = false;
-        gameOver = false;
-        gamePlayed++;
-        ProgressBar.FirstStar = false;
-        ProgressBar.SecondtStar = false;
-        ProgressBar.ThirdStar = false;
+        
+        
 
 
-        if (gamePlayed % 5 == 0)
+        /*if (gamePlayed % 5 == 0)
         {
             //AL QUINTO RESTART GAME SE PRODUCE EL AD
             AdsManager.Instance.interstitialAds.ShowAd();
             AdsManager.Instance.interstitialAds.OnUnityAdsShowComplete(InterstitialAds._adUnitId, UnityAdsShowCompletionState.COMPLETED);
-        }
+        }*/
         
 
 
@@ -143,9 +127,7 @@ public class MainMenu : MonoBehaviour
     {
         audioManager.PlaySFXButton();
         SceneManager.LoadScene("HomeMenu");
-        Time.timeScale = 1;
-        gamePaused = false;
-        gamePlayed = 0;
+
     }
    
 }

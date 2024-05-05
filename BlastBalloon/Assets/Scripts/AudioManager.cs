@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
     [Header("----Sound FX")]
     public AudioClip[] popBalloonSounds;
     public AudioClip butttonSFX;
+    public AudioClip starCompletedSFX;
+    public AudioClip totalStarsCompletedSFX;
 
 
     // Start is called before the first frame update
@@ -43,6 +45,14 @@ public class AudioManager : MonoBehaviour
     public void PlaySFXButton()
     {
         soundFXSource.PlayOneShot(butttonSFX);
+    }
+    public void PlayStarCompletedSFX()
+    {
+        soundFXSource.PlayOneShot(starCompletedSFX);
+    }
+    public void PlayTotalStarsCompletedSFX()
+    {
+        soundFXSource.PlayOneShot(totalStarsCompletedSFX);
     }
 
     public void PlaySFX_PopBallon()

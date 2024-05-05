@@ -17,11 +17,21 @@ public class ProgressBar : MonoBehaviour
     public static bool ThirdStar = false;
     Image progressBar;
     public int maxPoints;
+    bool starCompletedSoundPlayed = false;
+
+    AudioManager audioManager;
 
 
 
     void Start()
     {
+        //RESTAURAR VALORES
+        FirstStar = false;
+        SecondtStar = false;
+        ThirdStar = false;
+        starCompletedSoundPlayed = false;
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         progressBar = GetComponent<Image>();
 
     }
@@ -34,24 +44,36 @@ public class ProgressBar : MonoBehaviour
         //2 STAR 150 POINTS
         //3 STAR 250 POINTS
 
-        if (progressBar.fillAmount >= 1f)
+        if (progressBar.fillAmount >= 1f && !ThirdStar)
         {
             ThirdStar = true;
+            audioManager.PlayStarCompletedSFX();
             StarIcon3.transform.DOScale(1f, 0.8f).SetEase(Ease.OutBounce);
+            starCompletedSoundPlayed = true; 
         }
-        else if (progressBar.fillAmount >= 0.6f)
+        else if (progressBar.fillAmount >= 0.6f && !SecondtStar)
         {
             SecondtStar = true;
+            audioManager.PlayStarCompletedSFX();
             StarIcon2.transform.DOScale(1f, 0.8f).SetEase(Ease.OutBounce);
+            starCompletedSoundPlayed = true; 
         }
-        else if (progressBar.fillAmount >= 0.26f)
+        else if (progressBar.fillAmount >= 0.26f && !FirstStar)
         {
             FirstStar = true;
+            audioManager.PlayStarCompletedSFX();
             StarIcon1.transform.DOScale(1f, 0.8f).SetEase(Ease.OutBounce);
+            starCompletedSoundPlayed = true; // Marcar que el sonido se ha reproducido
         }
-        
+
+        // Restablecer starCompletedSoundPlayed a false en cada rama del else if
+        if (starCompletedSoundPlayed)
+        {
+            starCompletedSoundPlayed = false;
+        }
 
 
     }
 
+    
 }

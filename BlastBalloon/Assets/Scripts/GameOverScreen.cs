@@ -15,24 +15,32 @@ public class GameOverScreen : MonoBehaviour
     public RectTransform rectTransform;
     public List<GameObject> ballonsIcons = new List<GameObject>();
 
+    AudioManager audioManager;
+
 
     public IEnumerator StarsCompleted()
     {
-
+        yield return new WaitForSeconds(0.8f);
         if (ProgressBar.FirstStar == true)
         {
-            First_StarIcon.transform.DOScale(0.8f, 1.5f).SetEase(Ease.OutBounce);
-             yield return new WaitForSeconds(0.8f);
+            First_StarIcon.transform.DOScale(0.8f, 1.2f).SetEase(Ease.OutElastic);
+            
+            yield return new WaitForSeconds(0.65f);
+            audioManager.PlayTotalStarsCompletedSFX();
         }
         if (ProgressBar.SecondtStar == true)
         {
-            Second_StarIcon.transform.DOScale(0.8f, 1.5f).SetEase(Ease.OutBounce);
-            yield return new WaitForSeconds(0.8f);
+            Second_StarIcon.transform.DOScale(0.8f, 1.2f).SetEase(Ease.OutElastic);
+            
+            yield return new WaitForSeconds(0.65f);
+            audioManager.PlayTotalStarsCompletedSFX();
         }
         if (ProgressBar.ThirdStar == true)
         {
-            Third_StarIcon.transform.DOScale(0.8f, 1.5f).SetEase(Ease.OutBounce);
-            yield return new WaitForSeconds(0.8f);
+            Third_StarIcon.transform.DOScale(0.8f, 1.2f).SetEase(Ease.OutElastic);
+          
+            yield return new WaitForSeconds(0.65f);
+            audioManager.PlayTotalStarsCompletedSFX();
         }
 
 
@@ -46,18 +54,20 @@ public class GameOverScreen : MonoBehaviour
         rectTransform.DOAnchorPos(new Vector2(0f, 0f), fadeTime, false).SetEase(Ease.OutElastic);
         canvasGroup.DOFade(1f, fadeTime);
         StartCoroutine(BallonIconsAnimation());
+        StartCoroutine(StarsCompleted());
     }
-    public void PanelFadeOut()
+    /*public void PanelFadeOut()
     {
         canvasGroup.alpha = 1f;
         rectTransform.transform.localPosition = new Vector3(0f, 0f, 0f);
         rectTransform.DOAnchorPos(new Vector2(0f, -1000f), fadeTime, false).SetEase(Ease.InOutElastic);
         canvasGroup.DOFade(0f, fadeTime);
-    }
+    }*/
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         PanelFadeIn();
-        StartCoroutine(StarsCompleted());
+        
     }
 
     // Update is called once per frame

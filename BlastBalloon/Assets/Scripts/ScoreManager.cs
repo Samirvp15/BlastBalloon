@@ -23,6 +23,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetValues()
     {
+        scoreCount = 0;
         PoppedBalloonsCountIconList.Clear();
     }
 
@@ -49,12 +50,12 @@ public class ScoreManager : MonoBehaviour
         }
 
         scoreText.text = "Score: " + scoreCount;
-        highScoreText.text = "HighScore: " + highScoreCount;
+        //highScoreText.text = "HighScore: " + highScoreCount;
 
 
         //GAME OVER SCREEN
-        scoreText_GameOver.text = "Score: " + scoreCount;
-        highScoreText_GameOver.text = "HighScore: " + highScoreCount;
+        scoreText_GameOver.text =  "" + scoreCount;
+        highScoreText_GameOver.text = "" + highScoreCount;
 
         
 
