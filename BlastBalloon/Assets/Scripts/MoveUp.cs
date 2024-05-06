@@ -9,7 +9,7 @@ public class MoveUp : MonoBehaviour
     public static float speed;
     public float minSpeed;
     public float maxSpeed;
-    public static float seconsMaxDifc = 80;
+    public static float seconsMaxDifc = 180;
     private float topBound = 20;
     public float spinSpeed;
     private float horizontalAmplitude = 1.5f;  // Amplitud del movimiento horizontal
@@ -39,7 +39,7 @@ public class MoveUp : MonoBehaviour
 
 
         //Aumentar la amplitud
-        horizontalAmplitude = Mathf.Lerp(1.5f, 4.0f, getSeconsMaxDifc());
+        horizontalAmplitude = Mathf.Lerp(1.5f, 3.5f, getSeconsMaxDifc());
         horizontalPeriod = Mathf.Lerp(3.5f, 2.0f, getSeconsMaxDifc());
         // Incrementar el tiempo transcurrido
         elapsedTime += Time.deltaTime;

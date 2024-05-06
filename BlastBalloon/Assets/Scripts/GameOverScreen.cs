@@ -23,21 +23,21 @@ public class GameOverScreen : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         if (ProgressBar.FirstStar == true)
         {
-            First_StarIcon.transform.DOScale(0.8f, 1.2f).SetEase(Ease.OutElastic);
+            First_StarIcon.transform.DOScale(0.8f, 1.8f).SetEase(Ease.OutElastic);
             
             yield return new WaitForSeconds(0.65f);
             audioManager.PlayTotalStarsCompletedSFX();
         }
         if (ProgressBar.SecondtStar == true)
         {
-            Second_StarIcon.transform.DOScale(0.8f, 1.2f).SetEase(Ease.OutElastic);
+            Second_StarIcon.transform.DOScale(0.8f, 1.8f).SetEase(Ease.OutElastic);
             
             yield return new WaitForSeconds(0.65f);
             audioManager.PlayTotalStarsCompletedSFX();
         }
         if (ProgressBar.ThirdStar == true)
         {
-            Third_StarIcon.transform.DOScale(0.8f, 1.2f).SetEase(Ease.OutElastic);
+            Third_StarIcon.transform.DOScale(0.8f, 1.8f).SetEase(Ease.OutElastic);
           
             yield return new WaitForSeconds(0.65f);
             audioManager.PlayTotalStarsCompletedSFX();
@@ -80,7 +80,6 @@ public class GameOverScreen : MonoBehaviour
         foreach (var item in ballonsIcons)
         {
             item.transform.localScale = Vector3.zero;
-
         }
 
         foreach (var item in ballonsIcons)

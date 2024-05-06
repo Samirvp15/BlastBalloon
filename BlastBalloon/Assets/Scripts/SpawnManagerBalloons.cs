@@ -16,7 +16,7 @@ public class SpawnManagerBalloons : MonoBehaviour
     public float minZ = 0;
     public float maxZ = 0;
     private float startDelay = 1;
-    public float repeatRate = 0.8f;
+    public float repeatRate = 0.7f;
 
     // Variables para controlar la cantidad de objetos instanciados recientemente
     private int maxSameBombBalloons = 2;  // Máximo de globos iguales consecutivos
@@ -54,7 +54,7 @@ public class SpawnManagerBalloons : MonoBehaviour
     {
         balloonsList.Clear();
         MoveUp.speed = 0;
-        repeatRate = 0.8f;
+        repeatRate = 0.7f;
 
     }
 
@@ -78,14 +78,14 @@ public class SpawnManagerBalloons : MonoBehaviour
         //Agrega bomba al spawner
         if (roundedspeed > 3.40f && !balloonsList.Contains(bombBalloon[0]))
         {
-            repeatRate = 0.3f;
+            repeatRate = 0.2f;
             balloonsList.AddRange(bombBalloon);
         }
         //Agrega globos bomba al spawner
         // Verifica si la velocidad supera el umbral y si los prefabs de bomba no están ya en la lista
-        else if (roundedspeed > 5.80f && !balloonsList.Contains(bombBalloonPrefab[0]))
+        else if (roundedspeed > 6.80f && !balloonsList.Contains(bombBalloonPrefab[0]))
         {
-            repeatRate = 0.1f;
+            repeatRate = 0.015f;
             balloonsList.AddRange(bombBalloonPrefab);
         }
     }
@@ -110,24 +110,21 @@ public class SpawnManagerBalloons : MonoBehaviour
                 // Verificar si estamos instanciando un globo del mismo tipo consecutivamente
                 if (objectToRespawn.CompareTag("BombBalloon") && sameBombBalloonCount < maxSameBombBalloons)
                 {
-                    objectToRespawn = bombBalloonPrefab[Random.Range(0, bombBalloonPrefab.Length)];
                     sameBombBalloonCount++; // Incrementar contador
                 }
                 else if (objectToRespawn.CompareTag("Bomb") && sameBombBalloonCount < maxSameBombBalloons)
                 {
-                    objectToRespawn = bombBalloon[Random.Range(0, bombBalloon.Length)];
                     sameBombBalloonCount++; // Incrementar contador
                 }
                 else if (objectToRespawn.CompareTag("Balloon") && balloonCount < maxBalloons)
                 {
-                    //objectToRespawn = balloonPrefab[Random.Range(0, balloonPrefab.Length)];
                     balloonCount++;
                     sameBombBalloonCount = 0;  // Reiniciar contador
                 }
                 else
                 {
-                    Debug.Log("aaaaaaa");
                     objectToRespawn = bombBalloon[Random.Range(0, bombBalloon.Length)];
+                    sameBombBalloonCount = 0;
                     balloonCount = 0;  // Reiniciar contador
                 }
 

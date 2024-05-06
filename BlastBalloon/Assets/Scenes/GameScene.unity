@@ -5877,7 +5877,7 @@ MonoBehaviour:
   StarIcon1: {fileID: 2042878437}
   StarIcon2: {fileID: 1303470306}
   StarIcon3: {fileID: 1832341886}
-  maxPoints: 10
+  maxPoints: 25
 --- !u!114 &790442870
 MonoBehaviour:
   m_ObjectHideFlags: 0
