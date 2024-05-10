@@ -7,7 +7,7 @@ using UnityEngine.Advertisements;
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
 
-    [SerializeField] Button _showAdButton;
+    //[SerializeField] Button _showAdButton;
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms
@@ -22,7 +22,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         #endif
 
         // Disable the button until the ad is ready to show:
-        _showAdButton.interactable = false;
+        //_showAdButton.interactable = false;
     }
 
     // Call this public method when you want to get an ad ready to show.
@@ -38,8 +38,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         Debug.Log("Ad Rewarded Loaded: " + adUnitId);
-        _showAdButton.onClick.AddListener(ShowAd);
-        _showAdButton.interactable = true;
+        //_showAdButton.onClick.AddListener(ShowAd);
+        //_showAdButton.interactable = true;
 
         if (adUnitId.Equals(_adUnitId))
         {
@@ -66,12 +66,12 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     {
         if (adUnitId.Equals(InterstitialAds._adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
-            Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward
-             MainMenu.isRewarded = true;
+            // MainMenu.isRewarded = true;
             //WHAT TO DO .....
-            Debug.Log("SE AGREGRO 5 MONEDAS");
-            
+            Debug.Log("SE AGREGRO 1 vida MAS");
+            Time.timeScale = 1;
+            MainMenu.gamePaused = false;
 
         }
     }
@@ -92,9 +92,9 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void OnUnityAdsShowStart(string adUnitId) { }
     public void OnUnityAdsShowClick(string adUnitId) { }
 
-    void OnDestroy()
+    /*void OnDestroy()
     {
         // Clean up the button listeners:
         _showAdButton.onClick.RemoveAllListeners();
-    }
+    }*/
 }

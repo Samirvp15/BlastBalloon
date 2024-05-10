@@ -114,8 +114,8 @@ public class Balloon : MonoBehaviour
                     else if (CompareTag("BombBalloon") || gameObject.CompareTag("Bomb"))
                     {
                         // GAME OVER si el globo es una bomba
-                        MainMenu.gameOver = true;
-                        Canvas.GameOver();
+                        //MainMenu.gameOver = true;
+                        Canvas.ShowReviveAdScreen();
                     }
 
                     // Reproducir efectos de sonido y partículas

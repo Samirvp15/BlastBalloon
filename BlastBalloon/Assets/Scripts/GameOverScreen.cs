@@ -18,6 +18,8 @@ public class GameOverScreen : MonoBehaviour
     AudioManager audioManager;
 
 
+
+
     public IEnumerator StarsCompleted()
     {
         yield return new WaitForSeconds(0.8f);

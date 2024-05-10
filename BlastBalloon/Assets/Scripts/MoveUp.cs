@@ -47,6 +47,7 @@ public class MoveUp : MonoBehaviour
         transform.Rotate(Vector3.up * spinSpeed * Time.deltaTime); 
 
 
+        //ELIMINAR GLOBOS AL PASAR EL LIMITE
         if (transform.position.y > topBound && (gameObject.CompareTag("Balloon") || gameObject.CompareTag("BombBalloon") || gameObject.CompareTag("Bomb")))
         {
             Destroy(gameObject);
