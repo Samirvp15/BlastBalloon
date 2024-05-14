@@ -42,10 +42,13 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         /*if (Input.GetMouseButtonUp(0) && WorldTimeAPI.Instance.IsTimeLoaded)
         {
-            DateTime currentDateTime = WorldTimeAPI.Instance.GetCurrentDateTime();
-            datetimeText.text = currentDateTime.ToString();
+            DateTime currentDateTime = WorldTimeAPI.Instance.GetCurrentDateTimeSecond();
+            string formatedTime = currentDateTime.ToString("HH:mm:ss");
+            datetimeText.text = formatedTime;
+            //datetimeText.text = currentDateTime.ToString();
         }*/
     }
 
@@ -159,16 +162,28 @@ public class MainMenu : MonoBehaviour
     public void CloseReviveAdScreen()
     {
         ReviveScreen.SetActive(false);
+        GameOver();
+
+        if (GameManager.Instance.isRewardedAdOnCountDown == true)
+        {
+            GameManager.Instance.FirstCountDownTimer = true;
+            GameManager.Instance.xdd = false;
+            GameManager.Instance.EndAPIDateTime = GameManager.Instance.CurrentAPIDateTime;
+        }
+        else
+        {
+            GameManager.Instance.FirstCountDownTimer = false;
+        }
     }
     public void ShowRewardedAd()
     {
         //RESET VALOR COUNTDOWNTIMERCIRCLEBAR
         ReviveAdScreen.countdownTimerCircularBar = ReviveAdScreen.maxTimer;
 
-        countRewardedAdsWatched++;
+        countRewardedAdsWatched += 1;
 
         //CIERRA EL ADSCREEN Y SE REPRODUCE EL ANUNCIO
-        CloseReviveAdScreen();
+        ReviveScreen.SetActive(false);
         AdsManager.Instance.rewardedAdsButton.ShowAd();
         AdsManager.Instance.rewardedAdsButton.OnUnityAdsShowComplete(InterstitialAds._adUnitId, UnityAdsShowCompletionState.COMPLETED);
     }
