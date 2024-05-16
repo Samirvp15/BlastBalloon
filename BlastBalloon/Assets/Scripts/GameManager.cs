@@ -9,20 +9,26 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     //VARIABLES GLOBALES ENTRE ESCENAS
-    public int numberAdstoWatch = 1;
+    public int numberAdstoWatch = 3;
     public bool isRewardedAdOnCountDown = false;
+    public bool FirstCountDownTimer = false;
     public bool xdd = true;
     public TimeSpan TimeQuit;
+
     public TimeSpan TimePassed;
-    public TimeSpan timeSpan;
-    public int ayy = 0;
+
+
+
+    //public int ayy = 0;
     public DateTime StartAPIDateTime;
     public DateTime EndAPIDateTime;
     public DateTime CurrentAPIDateTime;
 
     void Start()
     {
-        string dateQuitString = PlayerPrefs.GetString("dateQuit", "");
+        
+        Debug.Log("numero de counts AD: " + PlayerPrefs.GetInt("countRewardedAdsWatched", 0));
+        /*string dateQuitString = PlayerPrefs.GetString("dateQuit", "");
         if (!dateQuitString.Equals(""))
         {
             DateTime dateQuit = DateTime.Parse(dateQuitString);
@@ -30,23 +36,20 @@ public class GameManager : MonoBehaviour
 
             if (dateNow > dateQuit)
             {
-                timeSpan = dateNow - dateQuit;
-                //Debug.Log("QUIT FOR: " + timeSpan.TotalSeconds + " seconds.");
+                TimePassed = dateNow - dateQuit;
+                //Debug.Log("QUIT FOR: " + TimePassed.TotalSeconds + " seconds.");
             }
 
             PlayerPrefs.SetString("dateQuit","");
-        }
+        }*/
     }
      
     private void OnApplicationQuit()
     {
         DateTime dateQuit = DateTime.Now;
         PlayerPrefs.SetString("dateQuit", dateQuit.ToString());
-       //Debug.Log("QUIT AT: "+dateQuit.ToString());
+        Debug.Log("QUIT AT: "+dateQuit.ToString());
     }
-
-
-    public bool FirstCountDownTimer = false;
 
 
     public TimeSpan TimeAPIElapsed()
@@ -57,7 +60,15 @@ public class GameManager : MonoBehaviour
 
     public TimeSpan TimeAPIElapsedSecond()
     {
-        return CurrentAPIDateTime - EndAPIDateTime;
+        if (CurrentAPIDateTime > EndAPIDateTime)
+        {
+            return CurrentAPIDateTime - EndAPIDateTime;
+        }
+        else
+        {
+            return EndAPIDateTime - CurrentAPIDateTime;
+        }
+ 
     }
 
 

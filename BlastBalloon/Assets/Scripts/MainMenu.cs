@@ -163,24 +163,35 @@ public class MainMenu : MonoBehaviour
     {
         ReviveScreen.SetActive(false);
         GameOver();
-
-        if (GameManager.Instance.isRewardedAdOnCountDown == true)
+        //if (GameManager.Instance.isRewardedAdOnCountDown == true)
+        int isRewardedAdOnCountDown = PlayerPrefs.GetInt("isRewardedAdOnCountDown", 0);
+        if (isRewardedAdOnCountDown == 1)
         {
+           
             GameManager.Instance.FirstCountDownTimer = true;
+            PlayerPrefs.SetInt("FirstCountDownTimer", 1);
             GameManager.Instance.xdd = false;
+            PlayerPrefs.SetInt("xdd", 0);
             GameManager.Instance.EndAPIDateTime = GameManager.Instance.CurrentAPIDateTime;
         }
         else
         {
+            //SOLO EL PRIMER CONTEO
             GameManager.Instance.FirstCountDownTimer = false;
+            PlayerPrefs.SetInt("FirstCountDownTimer", 0);
         }
     }
     public void ShowRewardedAd()
     {
+        
         //RESET VALOR COUNTDOWNTIMERCIRCLEBAR
         ReviveAdScreen.countdownTimerCircularBar = ReviveAdScreen.maxTimer;
+        Debug.Log("countdownTimerCircularBar: " + ReviveAdScreen.countdownTimerCircularBar);
 
         countRewardedAdsWatched += 1;
+
+        PlayerPrefs.SetInt("countRewardedAdsWatched", countRewardedAdsWatched);
+        
 
         //CIERRA EL ADSCREEN Y SE REPRODUCE EL ANUNCIO
         ReviveScreen.SetActive(false);
