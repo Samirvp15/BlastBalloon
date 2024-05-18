@@ -58,13 +58,7 @@ public class GameOverScreen : MonoBehaviour
         StartCoroutine(BallonIconsAnimation());
         StartCoroutine(StarsCompleted());
     }
-    /*public void PanelFadeOut()
-    {
-        canvasGroup.alpha = 1f;
-        rectTransform.transform.localPosition = new Vector3(0f, 0f, 0f);
-        rectTransform.DOAnchorPos(new Vector2(0f, -1000f), fadeTime, false).SetEase(Ease.InOutElastic);
-        canvasGroup.DOFade(0f, fadeTime);
-    }*/
+
     void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();

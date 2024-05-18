@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;//borrar
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -43,13 +43,6 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         
-        /*if (Input.GetMouseButtonUp(0) && WorldTimeAPI.Instance.IsTimeLoaded)
-        {
-            DateTime currentDateTime = WorldTimeAPI.Instance.GetCurrentDateTimeSecond();
-            string formatedTime = currentDateTime.ToString("HH:mm:ss");
-            datetimeText.text = formatedTime;
-            //datetimeText.text = currentDateTime.ToString();
-        }*/
     }
 
 
@@ -163,7 +156,7 @@ public class MainMenu : MonoBehaviour
     {
         ReviveScreen.SetActive(false);
         GameOver();
-        //if (GameManager.Instance.isRewardedAdOnCountDown == true)
+
         int isRewardedAdOnCountDown = PlayerPrefs.GetInt("isRewardedAdOnCountDown", 0);
         if (isRewardedAdOnCountDown == 1)
         {
@@ -186,7 +179,6 @@ public class MainMenu : MonoBehaviour
         
         //RESET VALOR COUNTDOWNTIMERCIRCLEBAR
         ReviveAdScreen.countdownTimerCircularBar = ReviveAdScreen.maxTimer;
-        Debug.Log("countdownTimerCircularBar: " + ReviveAdScreen.countdownTimerCircularBar);
 
         countRewardedAdsWatched += 1;
 

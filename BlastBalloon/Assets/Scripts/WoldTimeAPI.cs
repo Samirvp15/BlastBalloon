@@ -52,13 +52,6 @@ public class WorldTimeAPI : MonoBehaviour
         //return _currentDateTime;
         return _currentDateTime.AddSeconds(Time.realtimeSinceStartup);
     }
-    public DateTime GetCurrentDateTimeSecond()
-    {
-        //here we don't need to get the datetime from the server again
-        // just add elapsed time since the game start to _currentDateTime
-        return _currentDateTime;
-        //return _currentDateTime.AddSeconds(Time.realtimeSinceStartup);
-    }
 
 
     IEnumerator GetRealDateTimeFromAPI()
@@ -89,24 +82,6 @@ public class WorldTimeAPI : MonoBehaviour
             //Debug.Log("Success.");
         }
     }
-
-    //datetime format => 2020-08-14T15:54:04+01:00
-    /*DateTime ParseDateTime(string datetime)
-    {
-        //match 0000-00-00
-        string date = Regex.Match(datetime, @"^\d{4}-\d{2}-\d{2}").Value;
-
-        //match 00:00:00
-        string time = Regex.Match(datetime, @"\d{2}:\d{2}:\d{2}").Value;
-
-        // Crear un objeto DateTime a partir de la fecha y la hora
-        DateTime dateTimeFormat = DateTime.Parse(string.Format("{0} {1}", date, time));
-
- 
-        // Devolver la hora en el formato deseado (HH:mm:ss)
-        return dateTimeFormat;
-        //return DateTime.Parse(string.Format("{0} {1}", date, time));
-    }*/
 
     DateTime ParseDateTime(string datetime)
     {

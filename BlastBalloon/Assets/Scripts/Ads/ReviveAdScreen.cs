@@ -55,10 +55,6 @@ public class ReviveAdScreen : MonoBehaviour
            
             int countRewardedAdsWatchedQuit = PlayerPrefs.GetInt("countRewardedAdsWatched", 0);
 
-            Debug.Log("YAAA numero de counts AD: " + countRewardedAdsWatchedQuit);
-
-
-
 
             if (countRewardedAdsWatchedQuit < GameManager.Instance.numberAdstoWatch)
             {
@@ -70,11 +66,9 @@ public class ReviveAdScreen : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("SUS");
                     countdownTimerCircularBar = maxTimer;
                     MainMenu.gameOver = true;
                     Canvas.CloseReviveAdScreen();
-                   
                 }
             }
             else
@@ -86,38 +80,26 @@ public class ReviveAdScreen : MonoBehaviour
 
                 //--------------INTERACCION A LA API WORLD TIME -----------
 
-                //AQUI EMPIEZA EL CONTEO 
-                //if (!GameManager.Instance.isRewardedAdOnCountDown)
                 int isRewardedAdOnCountDown = PlayerPrefs.GetInt("isRewardedAdOnCountDown", 0);
                 if (isRewardedAdOnCountDown == 0)
                 {
-                    //DateTime currentStartDateTime = WorldTimeAPI.Instance.GetCurrentDateTime();
-                    //GameManager.Instance.StartAPIDateTime = currentStartDateTime;
-
 
                     DateTime currentDateTime = WorldTimeAPI.Instance.GetCurrentDateTime();
                     GameManager.Instance.CurrentAPIDateTime = currentDateTime;
                     GameManager.Instance.isRewardedAdOnCountDown = true;
                     PlayerPrefs.SetInt("isRewardedAdOnCountDown", 1);
 
-                    Debug.Log("ACTUAL TIME??:   " + GameManager.Instance.CurrentAPIDateTime);
                 }
 
                 int xdd = PlayerPrefs.GetInt("xdd", 0);
-                // if (!GameManager.Instance.xdd )
                 if (xdd == 0 )
                 {
                     DateTime currentDateTime = DateTime.Now;
                     GameManager.Instance.CurrentAPIDateTime = currentDateTime;
-
-                    Debug.Log("END TIME??:   " + GameManager.Instance.EndAPIDateTime);
-                    Debug.Log("ACTUAL TIME:   " + GameManager.Instance.CurrentAPIDateTime);
-
-                    
+         
 
                     //LAPSO DE TIEMPO FUERA DEL JUEGO (APP CERRADA)   
                     string dateQuitString = PlayerPrefs.GetString("dateQuit", "");
-                    Debug.Log("FECHA DE REINGRESO:  "+ dateQuitString);
 
                     if (!dateQuitString.Equals(""))
                     {
@@ -131,12 +113,8 @@ public class ReviveAdScreen : MonoBehaviour
                             string StringTimeQuit = PlayerPrefs.GetString("TimeQuit", "");
                             TimeSpan TimeQuiteFromExit = TimeSpan.Parse(StringTimeQuit);
 
-                            //time = GameManager.Instance.TimeQuit - GameManager.Instance.TimePassed;
                             time = TimeQuiteFromExit - GameManager.Instance.TimePassed;
 
-                            Debug.Log("TimeQuit from QUITT:    " + TimeQuiteFromExit);
-                            Debug.Log("TIME PASSED: " + GameManager.Instance.TimePassed);
-                            Debug.Log("tiempo de continuidad from QUIT:    " + time);
                         }
 
                         PlayerPrefs.SetString("dateQuit", "");
@@ -144,13 +122,8 @@ public class ReviveAdScreen : MonoBehaviour
                     else
                     {
                         //LAPSO DE TIEMPO DENTRO DEL JUEGO
-                        time = GameManager.Instance.TimeQuit - (GameManager.Instance.TimeAPIElapsedSecond());
+                        time = GameManager.Instance.TimeQuit - GameManager.Instance.TimeAPIElapsedSecond();
 
-
-                        Debug.Log("TimeQuit:    " + GameManager.Instance.TimeQuit);
-                        Debug.Log("lapso de tiempo MALO:    " + GameManager.Instance.TimeAPIElapsed());
-                        Debug.Log("lapso de tiempo BUENO?:    " + GameManager.Instance.TimeAPIElapsedSecond());
-                        Debug.Log("tiempo de continuidad:    " + time);
                     }
 
                     
@@ -162,13 +135,13 @@ public class ReviveAdScreen : MonoBehaviour
                 int FirstCountDownTimer = PlayerPrefs.GetInt("FirstCountDownTimer", 0);
                 if (FirstCountDownTimer == 0)
                 {
+                    //PRIMER CONTEO DEL COUNTDOWN 
                     currentTime -= Time.deltaTime;
                     time = TimeSpan.FromSeconds(currentTime);
-                    Debug.Log("1 sola VEZ");
                 }
                 else
                 {
-                    Debug.Log("varias veces");
+                    //CONTEO DEL COUNTDOWN CON TIEMPO REAL
                     time -= TimeSpan.FromSeconds(Time.deltaTime);
                 }
 
@@ -178,7 +151,6 @@ public class ReviveAdScreen : MonoBehaviour
                 if (time < TimeSpan.Zero)
                 {
                     //RESET VALORES
-                    Debug.Log("ESTO AL FINAL TODAVIAA");
                     currentTimeText.gameObject.SetActive(false);
                     rewardedButtonAd.interactable = true;
                     CircularBarFilled.gameObject.SetActive(true);
