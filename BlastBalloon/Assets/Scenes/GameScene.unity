@@ -6094,7 +6094,7 @@ MonoBehaviour:
   StarIcon1: {fileID: 2042878437}
   StarIcon2: {fileID: 1303470306}
   StarIcon3: {fileID: 1832341886}
-  maxPoints: 25
+  maxPoints: 300
 --- !u!114 &790442870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6285,9 +6285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberAdstoWatch: 3
   isRewardedAdOnCountDown: 0
-  xdd: 1
-  ayy: 0
   FirstCountDownTimer: 0
+  xdd: 1
 --- !u!4 &797180539
 Transform:
   m_ObjectHideFlags: 0
@@ -6590,7 +6589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &840369068
 RectTransform:
   m_ObjectHideFlags: 0

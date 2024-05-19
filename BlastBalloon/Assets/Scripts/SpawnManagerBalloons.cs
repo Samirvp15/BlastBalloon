@@ -16,7 +16,7 @@ public class SpawnManagerBalloons : MonoBehaviour
     public float minZ = 0;
     public float maxZ = 0;
     private float startDelay = 1;
-    public float repeatRate = 0.7f;
+    public float repeatRate = 0.3f;
 
     // Variables para controlar la cantidad de objetos instanciados recientemente
     private int maxSameBombBalloons = 2;  // Máximo de globos iguales consecutivos
@@ -54,7 +54,7 @@ public class SpawnManagerBalloons : MonoBehaviour
     {
         balloonsList.Clear();
         MoveUp.speed = 0;
-        repeatRate = 0.7f;
+        repeatRate = 0.3f;
 
     }
 
@@ -76,16 +76,16 @@ public class SpawnManagerBalloons : MonoBehaviour
         float roundedspeed = Mathf.Round(MoveUp.speed * 100f) / 100f;
 
         //Agrega bomba al spawner
-        if (roundedspeed > 3.40f && !balloonsList.Contains(bombBalloon[0]))
+        if (roundedspeed > 7.50f && !balloonsList.Contains(bombBalloon[0]))
         {
-            repeatRate = 0.2f;
+            repeatRate = 0.10f;
             balloonsList.AddRange(bombBalloon);
         }
         //Agrega globos bomba al spawner
         // Verifica si la velocidad supera el umbral y si los prefabs de bomba no están ya en la lista
-        else if (roundedspeed > 6.80f && !balloonsList.Contains(bombBalloonPrefab[0]))
+        else if (roundedspeed > 10.50f && !balloonsList.Contains(bombBalloonPrefab[0]))
         {
-            repeatRate = 0.015f;
+            repeatRate = 0.05f;
             balloonsList.AddRange(bombBalloonPrefab);
         }
     }

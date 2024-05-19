@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40c09f23a6b99f4c96cf12a361c38e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 5
-  maxSpeed: 8
+  minSpeed: 7
+  maxSpeed: 11
   spinSpeed: 0
 --- !u!65 &6796854026272988063
 BoxCollider:

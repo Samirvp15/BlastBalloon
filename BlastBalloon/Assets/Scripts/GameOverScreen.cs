@@ -23,26 +23,24 @@ public class GameOverScreen : MonoBehaviour
     public IEnumerator StarsCompleted()
     {
         yield return new WaitForSeconds(0.8f);
+
         if (ProgressBar.FirstStar == true)
         {
-            First_StarIcon.transform.DOScale(0.8f, 1.8f).SetEase(Ease.OutElastic);
-            
-            yield return new WaitForSeconds(0.65f);
+            First_StarIcon.transform.DOScale(0.8f, 2.0f).SetEase(Ease.OutElastic);
             audioManager.PlayTotalStarsCompletedSFX();
+            yield return new WaitForSeconds(0.8f);  
         }
         if (ProgressBar.SecondtStar == true)
         {
-            Second_StarIcon.transform.DOScale(0.8f, 1.8f).SetEase(Ease.OutElastic);
-            
-            yield return new WaitForSeconds(0.65f);
+            Second_StarIcon.transform.DOScale(0.8f, 2.0f).SetEase(Ease.OutElastic);
             audioManager.PlayTotalStarsCompletedSFX();
+            yield return new WaitForSeconds(0.8f);  
         }
         if (ProgressBar.ThirdStar == true)
         {
-            Third_StarIcon.transform.DOScale(0.8f, 1.8f).SetEase(Ease.OutElastic);
-          
-            yield return new WaitForSeconds(0.65f);
+            Third_StarIcon.transform.DOScale(0.8f, 2.0f).SetEase(Ease.OutElastic);
             audioManager.PlayTotalStarsCompletedSFX();
+            yield return new WaitForSeconds(0.8f);
         }
 
 
