@@ -57,8 +57,6 @@ public class WorldTimeAPI : MonoBehaviour
     IEnumerator GetRealDateTimeFromAPI()
     {
 
-
-
         UnityWebRequest webRequest = UnityWebRequest.Get(API_URL);
         //Debug.Log("getting real datetime...");
 

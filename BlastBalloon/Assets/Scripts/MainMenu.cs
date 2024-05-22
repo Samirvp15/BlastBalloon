@@ -18,7 +18,6 @@ public class MainMenu : MonoBehaviour
     public static bool gamePaused = false;
 
     //FOR ADS
-    public static int gamePlayed = 0;
     public static int countRewardedAdsWatched = 0;
     public static bool isRewarded = false;
 
@@ -62,14 +61,6 @@ public class MainMenu : MonoBehaviour
 
     public void GameOver()
     {
-
-        /*if (gamePlayed % 3 == 0)
-        {
-            //AL QUINTO RESTART GAME SE PRODUCE EL AD
-            AdsManager.Instance.rewardedAdsButton.ShowAd();
-            AdsManager.Instance.rewardedAdsButton.OnUnityAdsShowComplete(InterstitialAds._adUnitId, UnityAdsShowCompletionState.COMPLETED);
-            
-        }*/
 
         SetActiveScreen(GameOverScreen);
         
@@ -121,17 +112,6 @@ public class MainMenu : MonoBehaviour
         audioManager.PlaySFXButton();
         //RESTAURAR VALORES
         
-        
-
-
-        /*if (gamePlayed % 5 == 0)
-        {
-            //AL QUINTO RESTART GAME SE PRODUCE EL AD
-            AdsManager.Instance.interstitialAds.ShowAd();
-            AdsManager.Instance.interstitialAds.OnUnityAdsShowComplete(InterstitialAds._adUnitId, UnityAdsShowCompletionState.COMPLETED);
-        }*/
-        
-
 
         //Recargar la escena
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -163,8 +143,8 @@ public class MainMenu : MonoBehaviour
            
             GameManager.Instance.FirstCountDownTimer = true;
             PlayerPrefs.SetInt("FirstCountDownTimer", 1);
-            GameManager.Instance.xdd = false;
-            PlayerPrefs.SetInt("xdd", 0);
+            GameManager.Instance.NextCountDownTimer = false;
+            PlayerPrefs.SetInt("NextCountDownTimer", 0);
             GameManager.Instance.EndAPIDateTime = GameManager.Instance.CurrentAPIDateTime;
         }
         else

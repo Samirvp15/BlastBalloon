@@ -12,7 +12,12 @@ public class HomeScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OnScale();
+        DOTween.SetTweensCapacity(500, 50);
+ 
+        // Iniciar la animación
+        StartCoroutine(ScaleButton(StartButton));
+        StartCoroutine(ScaleButton(SettingsButton));
+        StartCoroutine(ScaleButton(ExitButton));
     }
 
     // Update is called once per frame
@@ -22,35 +27,17 @@ public class HomeScreen : MonoBehaviour
         
 
     }
-
-    private void OnScale()
+    private IEnumerator ScaleButton(GameObject button)
     {
-        StartButton.transform.DOScale(0.90f, 2.0f)
-            .SetEase(Ease.InOutSine)
-            .OnComplete(() =>
-            {
-                StartButton.transform.DOScale(1.0f, 2.0f)
-                    .SetEase(Ease.InOutSine)
-                    .SetDelay(0.8f)
-                    .OnComplete(OnScale);
-            });
-        SettingsButton.transform.DOScale(0.90f, 2.0f)
-           .SetEase(Ease.InOutSine)
-           .OnComplete(() =>
-           {
-               SettingsButton.transform.DOScale(1.0f, 2.0f)
-                   .SetEase(Ease.InOutSine)
-                   .SetDelay(0.8f)
-                   .OnComplete(OnScale);
-           });
-        ExitButton.transform.DOScale(0.90f, 2.0f)
-           .SetEase(Ease.InOutSine)
-           .OnComplete(() =>
-           {
-               ExitButton.transform.DOScale(1.0f, 2.0f)
-                   .SetEase(Ease.InOutSine)
-                   .SetDelay(0.8f)
-                   .OnComplete(OnScale);
-           });
+        while (true)
+        {
+            // Escalar a 0.90
+            yield return button.transform.DOScale(0.90f, 2.0f).SetEase(Ease.InOutSine).WaitForCompletion();
+            // Escalar a 1.0 con retraso
+            yield return new WaitForSeconds(0.8f);
+            yield return button.transform.DOScale(1.0f, 2.0f).SetEase(Ease.InOutSine).WaitForCompletion();
+        }
     }
+
+   
 }

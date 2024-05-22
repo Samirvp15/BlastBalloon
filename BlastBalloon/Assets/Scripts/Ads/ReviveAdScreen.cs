@@ -91,8 +91,8 @@ public class ReviveAdScreen : MonoBehaviour
 
                 }
 
-                int xdd = PlayerPrefs.GetInt("xdd", 0);
-                if (xdd == 0 )
+                int NextCountDownTimer = PlayerPrefs.GetInt("NextCountDownTimer", 0);
+                if (NextCountDownTimer == 0 )
                 {
                     DateTime currentDateTime = DateTime.Now;
                     GameManager.Instance.CurrentAPIDateTime = currentDateTime;
@@ -127,8 +127,8 @@ public class ReviveAdScreen : MonoBehaviour
                     }
 
                     
-                    GameManager.Instance.xdd = true;
-                    PlayerPrefs.SetInt("xdd", 1);
+                    GameManager.Instance.NextCountDownTimer = true;
+                    PlayerPrefs.SetInt("NextCountDownTimer", 1);
                 }
 
 
@@ -166,8 +166,8 @@ public class ReviveAdScreen : MonoBehaviour
 
                     GameManager.Instance.FirstCountDownTimer = false;
                     PlayerPrefs.SetInt("FirstCountDownTimer", 0);
-                    GameManager.Instance.xdd = true;
-                    PlayerPrefs.SetInt("xdd", 1);
+                    GameManager.Instance.NextCountDownTimer = true;
+                    PlayerPrefs.SetInt("NextCountDownTimer", 1);
 
 
                 }

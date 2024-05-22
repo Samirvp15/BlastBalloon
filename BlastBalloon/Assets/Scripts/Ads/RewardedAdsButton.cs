@@ -67,9 +67,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         if (adUnitId.Equals(InterstitialAds._adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             // Grant a reward
-            // MainMenu.isRewarded = true;
-            //WHAT TO DO .....
-            Debug.Log("SE AGREGRO 1 vida MAS");
             Time.timeScale = 1;
             MainMenu.gamePaused = false;
 

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int numberAdstoWatch = 3;
     public bool isRewardedAdOnCountDown = false;
     public bool FirstCountDownTimer = false;
-    public bool xdd = true;
+    public bool NextCountDownTimer = true;
     public TimeSpan TimeQuit;
 
     public TimeSpan TimePassed;
