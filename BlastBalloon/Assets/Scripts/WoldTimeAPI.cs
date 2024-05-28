@@ -25,13 +25,10 @@ public class WorldTimeAPI : MonoBehaviour
 
     #endregion
 
-    //json container
     struct TimeData
     {
-        //public string client_ip;
-        //...
+
         public string datetime;
-        //..
     }
 
     const string API_URL = "http://worldtimeapi.org/api/ip";
@@ -49,7 +46,6 @@ public class WorldTimeAPI : MonoBehaviour
     {
         //here we don't need to get the datetime from the server again
         // just add elapsed time since the game start to _currentDateTime
-        //return _currentDateTime;
         return _currentDateTime.AddSeconds(Time.realtimeSinceStartup);
     }
 
@@ -77,7 +73,6 @@ public class WorldTimeAPI : MonoBehaviour
             _currentDateTime = ParseDateTime(timeData.datetime);
             IsTimeLoaded = true;
 
-            //Debug.Log("Success.");
         }
     }
 
@@ -93,24 +88,3 @@ public class WorldTimeAPI : MonoBehaviour
         return dateTimeFormat;
     }
 }
-
-
-
-/* API (json)
-{
-	"abbreviation" : "+01",
-	"client_ip"    : "190.107.125.48",
-	"datetime"     : "2020-08-14T15:544:04+01:00",
-	"dst"          : false,
-	"dst_from"     : null,
-	"dst_offset"   : 0,
-	"dst_until"    : null,
-	"raw_offset"   : 3600,
-	"timezone"     : "Asia/Brunei",
-	"unixtime"     : 1595601262,
-	"utc_datetime" : "2020-08-14T15:54:04+00:00",
-	"utc_offset"   : "+01:00"
-}
-
-We only need "datetime" property.
-*/

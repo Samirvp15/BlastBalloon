@@ -12,6 +12,8 @@ public class ReviveAdScreen : MonoBehaviour
 {
 
     Image CircularBarFilled;
+    public TextMeshProUGUI RevivePhrase;
+    List<string> phrases = new List<string>();
     public static float countdownTimerCircularBar = 5;
     public static float maxTimer = 0;
     private MainMenu Canvas;
@@ -25,16 +27,40 @@ public class ReviveAdScreen : MonoBehaviour
     float startMinutes = 2.0f;
     public TextMeshProUGUI currentTimeText;
     
+    void InitializePhrases()
+    {
+        phrases.Add("That was tough! Watch an ad to respawn and try again!");
+        phrases.Add("Almost there! Watch an ad to continue and crush it!");
+        phrases.Add("Don't rage quit! Watch an ad to get back in the game!");
+        phrases.Add("Game over? Not yet! Watch an ad for another shot!");
+        phrases.Add("Need an extra life? Watch an ad and jump back in!");
+        phrases.Add("Not your best run? Watch an ad and get another shot!");
+        phrases.Add("Lost the match? Watch an ad for a comeback chance!");
+        phrases.Add("Out of lives? Watch an ad to recharge and fight on!");
+
+    }
+    public void ChooseRamdomRevivePhrase()
+    {
+        int index = UnityEngine.Random.Range(0, phrases.Count);
+        RevivePhrase.text = phrases[index];
+    }
+
+    
+
+
+
     void Start()
     {
         Canvas = GameObject.Find("Canvas").GetComponent<MainMenu>();
         CircularBarFilled = GameObject.Find("CircularBarFilled").GetComponent<Image>();
         rewardedButtonAd = GameObject.Find("RewardedAdButton").GetComponent<Button>();
         currentTimeText = GameObject.Find("TimerCountDownText").GetComponent<TextMeshProUGUI>();
-
         maxTimer = countdownTimerCircularBar;
 
         currentTime = startMinutes * 60;
+
+        InitializePhrases();
+        ChooseRamdomRevivePhrase();
 
         PanelReviveADFadeIn();
     }
@@ -42,7 +68,6 @@ public class ReviveAdScreen : MonoBehaviour
     public void PanelReviveADFadeIn()
     {
         PanelReviveAd.transform.DOScale(1f, 1f).SetEase(Ease.OutElastic);
-
     }
 
     // Update is called once per frame
@@ -58,6 +83,7 @@ public class ReviveAdScreen : MonoBehaviour
 
             if (countRewardedAdsWatchedQuit < GameManager.Instance.numberAdstoWatch)
             {
+                
                 //CountDown CircleBar Progress
                 if (countdownTimerCircularBar >= 0)
                 {
@@ -73,7 +99,8 @@ public class ReviveAdScreen : MonoBehaviour
             }
             else
             {
-                
+                RevivePhrase.text = "Don't give up! Just blast on them!";
+
                 currentTimeText.gameObject.SetActive(true);
                 rewardedButtonAd.interactable = false;
                 CircularBarFilled.gameObject.SetActive(false);
@@ -151,6 +178,7 @@ public class ReviveAdScreen : MonoBehaviour
                 if (time < TimeSpan.Zero)
                 {
                     //RESET VALORES
+                    ChooseRamdomRevivePhrase();
                     currentTimeText.gameObject.SetActive(false);
                     rewardedButtonAd.interactable = true;
                     CircularBarFilled.gameObject.SetActive(true);

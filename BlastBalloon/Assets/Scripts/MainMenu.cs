@@ -156,7 +156,9 @@ public class MainMenu : MonoBehaviour
     }
     public void ShowRewardedAd()
     {
+
         
+
         //RESET VALOR COUNTDOWNTIMERCIRCLEBAR
         ReviveAdScreen.countdownTimerCircularBar = ReviveAdScreen.maxTimer;
 
