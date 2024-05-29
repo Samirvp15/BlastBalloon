@@ -156,16 +156,12 @@ public class MainMenu : MonoBehaviour
     }
     public void ShowRewardedAd()
     {
-
-        
-
         //RESET VALOR COUNTDOWNTIMERCIRCLEBAR
         ReviveAdScreen.countdownTimerCircularBar = ReviveAdScreen.maxTimer;
 
         countRewardedAdsWatched += 1;
-
+ 
         PlayerPrefs.SetInt("countRewardedAdsWatched", countRewardedAdsWatched);
-        
 
         //CIERRA EL ADSCREEN Y SE REPRODUCE EL ANUNCIO
         ReviveScreen.SetActive(false);

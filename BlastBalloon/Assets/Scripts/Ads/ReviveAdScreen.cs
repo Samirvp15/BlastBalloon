@@ -14,8 +14,8 @@ public class ReviveAdScreen : MonoBehaviour
     Image CircularBarFilled;
     public TextMeshProUGUI RevivePhrase;
     List<string> phrases = new List<string>();
-    public static float countdownTimerCircularBar = 5;
-    public static float maxTimer = 0;
+    public static float countdownTimerCircularBar = 5.0f;
+    public static float maxTimer = 0.0f;
     private MainMenu Canvas;
     public GameObject PanelReviveAd;
     Button rewardedButtonAd;
@@ -79,11 +79,9 @@ public class ReviveAdScreen : MonoBehaviour
             Time.timeScale = 1;
            
             int countRewardedAdsWatchedQuit = PlayerPrefs.GetInt("countRewardedAdsWatched", 0);
-
-
             if (countRewardedAdsWatchedQuit < GameManager.Instance.numberAdstoWatch)
             {
-                
+               
                 //CountDown CircleBar Progress
                 if (countdownTimerCircularBar >= 0)
                 {

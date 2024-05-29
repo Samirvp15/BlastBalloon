@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     //VARIABLES GLOBALES ENTRE ESCENAS
-    public int numberAdstoWatch = 3;
+    public int numberAdstoWatch = 6;
     public bool isRewardedAdOnCountDown = false;
     public bool FirstCountDownTimer = false;
     public bool NextCountDownTimer = true;
