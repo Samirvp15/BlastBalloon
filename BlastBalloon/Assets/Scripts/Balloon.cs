@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,15 +12,14 @@ public class Balloon : MonoBehaviour
     private Collider colliderObject;
     private Renderer particleRenderer;
     public bool isTouched = false;
-    private MainMenu Canvas;
 
     AudioManager audioManager;
+
+    private BombAnimation bombAnimation;
 
     void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
-        Canvas = GameObject.Find("Canvas").GetComponent<MainMenu>();
 
         //COMPONENTES UNICOS PARA CADA INSTANCIA DE OBJETO
         explosionParticle = transform.Find("BoomParticles").GetComponent<ParticleSystem>();
@@ -99,12 +99,14 @@ public class Balloon : MonoBehaviour
                     // Marcar el globo como tocado
                     isTouched = true;
 
-                    // Desactivar el renderer y el collider
-                    renderObject.enabled = false;
-                    colliderObject.enabled = false;
-
+                    
                     if (CompareTag("Balloon"))
                     {
+
+                        // Desactivar el renderer y el collider
+                        renderObject.enabled = false;
+                        colliderObject.enabled = false;
+
                         //Aumentar el contador de puntuación si el globo es normal
                         ScoreManager.scoreCount++;
                         //AUMENTAR EL CONTADOR DEL MISMO GLOBO REVENTADO PARA GAMEOVERSCREEN
@@ -113,9 +115,11 @@ public class Balloon : MonoBehaviour
                     }
                     else if (CompareTag("BombBalloon") || gameObject.CompareTag("Bomb"))
                     {
-                        // GAME OVER si el globo es una bomba
-                        //MainMenu.gameOver = true;
-                        Canvas.ShowReviveAdScreen();
+                        MainMenu.gamePaused = true;
+                        bombAnimation = GetComponent<BombAnimation>();
+                        
+                        // Play bomb animation
+                        bombAnimation.PlayBombAnimation();
                     }
 
                     // Reproducir efectos de sonido y partículas

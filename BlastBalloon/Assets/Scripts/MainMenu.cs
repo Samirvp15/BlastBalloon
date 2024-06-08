@@ -29,6 +29,8 @@ public class MainMenu : MonoBehaviour
     AudioManager audioManager;
     void Start()
     {
+        // Load the saved count of rewarded ads watched
+        //countRewardedAdsWatched = PlayerPrefs.GetInt("countRewardedAdsWatched", 0);
         //RESTAURAR VALORES
         Time.timeScale = 1;
         gamePaused = false;
@@ -37,13 +39,6 @@ public class MainMenu : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         activeScreen = null;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
      void SetActiveScreen(GameObject newActiveScreen)
     {
@@ -137,6 +132,9 @@ public class MainMenu : MonoBehaviour
         ReviveScreen.SetActive(false);
         GameOver();
 
+        //RESET VALOR COUNTDOWNTIMERCIRCLEBAR
+        ReviveAdScreen.countdownTimerCircularBar = ReviveAdScreen.maxTimer;
+
         int isRewardedAdOnCountDown = PlayerPrefs.GetInt("isRewardedAdOnCountDown", 0);
         if (isRewardedAdOnCountDown == 1)
         {
@@ -161,12 +159,13 @@ public class MainMenu : MonoBehaviour
 
         countRewardedAdsWatched += 1;
  
-        PlayerPrefs.SetInt("countRewardedAdsWatched", countRewardedAdsWatched);
+        //PlayerPrefs.SetInt("countRewardedAdsWatched", countRewardedAdsWatched);
+        //PlayerPrefs.Save();
 
         //CIERRA EL ADSCREEN Y SE REPRODUCE EL ANUNCIO
         ReviveScreen.SetActive(false);
         AdsManager.Instance.rewardedAdsButton.ShowAd();
-        AdsManager.Instance.rewardedAdsButton.OnUnityAdsShowComplete(InterstitialAds._adUnitId, UnityAdsShowCompletionState.COMPLETED);
+        //AdsManager.Instance.rewardedAdsButton.OnUnityAdsShowComplete(InterstitialAds._adUnitId, UnityAdsShowCompletionState.COMPLETED);
     }
    
 }

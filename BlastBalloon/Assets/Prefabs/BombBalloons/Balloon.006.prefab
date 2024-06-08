@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -6455141395046721526}
   - component: {fileID: 8667216891412248723}
   - component: {fileID: 5929364055340897968}
+  - component: {fileID: 3583533227586430591}
+  - component: {fileID: 7754633349943785128}
   m_Layer: 0
   m_Name: Balloon.006
   m_TagString: BombBalloon
@@ -257,6 +259,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3583533227586430591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912866439936936866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89148f676a10f5e40b2c3e81e63cee5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &7754633349943785128
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912866439936936866}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e687de1abc1977e43bd9fd5543f6dde0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1097643944262669183
 PrefabInstance:
   m_ObjectHideFlags: 0

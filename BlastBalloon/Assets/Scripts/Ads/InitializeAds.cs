@@ -7,7 +7,7 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
 {
     [SerializeField] string _androidGameId;
     [SerializeField] string _iOSGameId;
-    [SerializeField] bool _testMode = true;
+    [SerializeField] bool _testMode = false;
     private string _gameId;
 
 
@@ -33,11 +33,13 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
 
     public void OnInitializationComplete()
     {
+        GameManager.Instance.isOnline = true;
         Debug.Log("Unity Ads initialization complete.");
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
+        GameManager.Instance.isOnline = false;
         Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
     }
 }

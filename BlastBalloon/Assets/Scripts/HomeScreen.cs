@@ -20,13 +20,7 @@ public class HomeScreen : MonoBehaviour
         StartCoroutine(ScaleButton(ExitButton));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-        
-
-    }
     private IEnumerator ScaleButton(GameObject button)
     {
         while (true)

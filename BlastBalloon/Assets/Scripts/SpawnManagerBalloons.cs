@@ -83,7 +83,7 @@ public class SpawnManagerBalloons : MonoBehaviour
         }
         //Agrega globos bomba al spawner
         // Verifica si la velocidad supera el umbral y si los prefabs de bomba no están ya en la lista
-        else if (roundedspeed > 10.50f && !balloonsList.Contains(bombBalloonPrefab[0]))
+        else if (roundedspeed > 8.5f && !balloonsList.Contains(bombBalloonPrefab[0]))
         {
             repeatRate = 0.05f;
             balloonsList.AddRange(bombBalloonPrefab);

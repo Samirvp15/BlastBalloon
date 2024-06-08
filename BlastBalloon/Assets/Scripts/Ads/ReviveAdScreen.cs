@@ -14,7 +14,7 @@ public class ReviveAdScreen : MonoBehaviour
     Image CircularBarFilled;
     public TextMeshProUGUI RevivePhrase;
     List<string> phrases = new List<string>();
-    public static float countdownTimerCircularBar = 5.0f;
+    public static float countdownTimerCircularBar = 10.0f;
     public static float maxTimer = 0.0f;
     private MainMenu Canvas;
     public GameObject PanelReviveAd;
@@ -78,10 +78,10 @@ public class ReviveAdScreen : MonoBehaviour
         {
             Time.timeScale = 1;
            
-            int countRewardedAdsWatchedQuit = PlayerPrefs.GetInt("countRewardedAdsWatched", 0);
-            if (countRewardedAdsWatchedQuit < GameManager.Instance.numberAdstoWatch)
-            {
-               
+            //int countRewardedAdsWatchedQuit = PlayerPrefs.GetInt("countRewardedAdsWatched", 0);
+
+            if ((MainMenu.countRewardedAdsWatched < GameManager.Instance.numberAdstoWatch) && GameManager.Instance.isOnline)
+            { 
                 //CountDown CircleBar Progress
                 if (countdownTimerCircularBar >= 0)
                 {
@@ -97,6 +97,7 @@ public class ReviveAdScreen : MonoBehaviour
             }
             else
             {
+
                 RevivePhrase.text = "Don't give up! Just blast on them!";
 
                 currentTimeText.gameObject.SetActive(true);
@@ -175,6 +176,14 @@ public class ReviveAdScreen : MonoBehaviour
 
                 if (time < TimeSpan.Zero)
                 {
+
+
+                    //CHECK CONNECTION INTERNET FOR ADS
+                    if (GameManager.Instance.isOnline == false)
+                    {
+                        AdsManager.Instance.initializeAds.InitializeAd();
+                    }
+
                     //RESET VALORES
                     ChooseRamdomRevivePhrase();
                     currentTimeText.gameObject.SetActive(false);
@@ -185,16 +194,16 @@ public class ReviveAdScreen : MonoBehaviour
                     time = TimeSpan.Zero;
 
                     MainMenu.countRewardedAdsWatched = 0;
-                    PlayerPrefs.SetInt("isRewardedAdOnCountDown", 0);
+                    //PlayerPrefs.SetInt("countRewardedAdsWatched", 0);
                     GameManager.Instance.isRewardedAdOnCountDown = false;
-                    PlayerPrefs.SetInt("countRewardedAdsWatched", 0);
+                    PlayerPrefs.SetInt("isRewardedAdOnCountDown", 0);
+
                     PlayerPrefs.SetString("TimeQuit", "");
 
                     GameManager.Instance.FirstCountDownTimer = false;
                     PlayerPrefs.SetInt("FirstCountDownTimer", 0);
                     GameManager.Instance.NextCountDownTimer = true;
                     PlayerPrefs.SetInt("NextCountDownTimer", 1);
-
 
                 }
 
