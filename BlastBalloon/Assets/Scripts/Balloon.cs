@@ -39,7 +39,7 @@ public class Balloon : MonoBehaviour
         if (renderObject != null && renderObject.material != null)
         {
             // Verificar si el objeto tiene un renderer y un material renderObject.material != null
-            if ((gameObject.CompareTag("Balloon") || gameObject.CompareTag("Bomb")) && gameObject.layer != 6)
+            if ((gameObject.CompareTag("Balloon") || gameObject.CompareTag("Bomb") || gameObject.CompareTag("BonusLife")) && gameObject.layer != 6)
             {
                 // Asignar el color aleatorio al material del objeto
                 renderObject.material = colorMaterial[colorIndex];
@@ -112,6 +112,17 @@ public class Balloon : MonoBehaviour
                         //AUMENTAR EL CONTADOR DEL MISMO GLOBO REVENTADO PARA GAMEOVERSCREEN
                         SpawnManagerBalloons.PopBalloon(gameObject.name);                     
 
+                    }
+                    else if (CompareTag("BonusLife"))
+                    {
+
+                        // Desactivar el renderer y el collider
+                        renderObject.enabled = false;
+                        colliderObject.enabled = false;
+
+                        //Aumentar el contador de puntuación si el globo es normal
+                        Debug.Log("VIDA EXTRAA");
+                       
                     }
                     else if (CompareTag("BombBalloon") || gameObject.CompareTag("Bomb"))
                     {

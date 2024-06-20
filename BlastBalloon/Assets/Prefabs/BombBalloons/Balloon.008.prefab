@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40c09f23a6b99f4c96cf12a361c38e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 7
+  minSpeed: 7.5
   maxSpeed: 11
   spinSpeed: 0
 --- !u!65 &8453206796447893394

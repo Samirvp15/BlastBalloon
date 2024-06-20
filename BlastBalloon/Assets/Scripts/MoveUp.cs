@@ -6,10 +6,7 @@ using UnityEngine.UIElements;
 
 public class MoveUp : MonoBehaviour
 {
-    public static float speed;
-    public float minSpeed;
-    public float maxSpeed;
-    public static float seconsMaxDifc = 180;
+
     private float topBound = 20;
     public float spinSpeed;
     private float horizontalAmplitude = 1.5f;  // Amplitud del movimiento horizontal
@@ -23,15 +20,15 @@ public class MoveUp : MonoBehaviour
     }
     public static float getSeconsMaxDifc()
     {
-        return Mathf.Clamp01(Time.timeSinceLevelLoad / seconsMaxDifc);
+        return Mathf.Clamp01(Time.timeSinceLevelLoad / GameManager.Instance.seconsMaxDifc);
     }
     // Update is called once per frame
     void Update()
     {
-  
-        speed = Mathf.Lerp(minSpeed, maxSpeed, getSeconsMaxDifc());
+
+        GameManager.Instance.speed = Mathf.Lerp(GameManager.Instance.minSpeed, GameManager.Instance.maxSpeed, getSeconsMaxDifc());
         
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        transform.Translate(Vector3.up * GameManager.Instance.speed * Time.deltaTime);
 
         // Movimiento horizontal periódico
         float horizontalOffset = Mathf.Sin(elapsedTime * 2 * Mathf.PI / horizontalPeriod) * horizontalAmplitude;

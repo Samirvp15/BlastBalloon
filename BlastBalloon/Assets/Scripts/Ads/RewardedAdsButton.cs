@@ -35,7 +35,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         GameManager.Instance.isOnline = true;
-        Debug.Log("ANUNCIO LISTO: " + _adUnitId);
         if (adUnitId.Equals(_adUnitId))
         {
 

@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40c09f23a6b99f4c96cf12a361c38e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 7
+  minSpeed: 7.5
   maxSpeed: 11
   spinSpeed: 30
 --- !u!82 &3053938960288078176
@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89148f676a10f5e40b2c3e81e63cee5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb: {fileID: 4776933763538445178}
 --- !u!95 &-7480505147671549214
 Animator:
   serializedVersion: 5

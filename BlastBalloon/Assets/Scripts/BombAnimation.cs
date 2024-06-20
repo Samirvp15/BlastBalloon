@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class BombAnimation : MonoBehaviour
 {
-    //public GameObject bomb;
-    //private bool isPaused = false;
+
     private Animator bombAnimator;
     private MainMenu Canvas;
     private Renderer renderObject;
     private Collider colliderObject;
+    AudioManager audioManager;
 
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         Canvas = GameObject.Find("Canvas").GetComponent<MainMenu>();
         bombAnimator = GetComponent<Animator>();
         renderObject = GetComponent<Renderer>();
@@ -46,7 +47,7 @@ public class BombAnimation : MonoBehaviour
             timer += Time.unscaledDeltaTime;
             yield return null;
         }
-
+        audioManager.PlaySFX_Bomb();
         // Disable the renderer and collider after the animation
         renderObject.enabled = false;
         colliderObject.enabled = false;

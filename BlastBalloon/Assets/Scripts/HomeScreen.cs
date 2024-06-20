@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class HomeScreen : MonoBehaviour
 {
+    public GameObject SelectLevel;
+    public GameObject activeScreen;
 
     public GameObject StartButton;
     public GameObject SettingsButton;
     public GameObject ExitButton;
+    AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        activeScreen = null;
+
         DOTween.SetTweensCapacity(500, 50);
  
         // Iniciar la animación
@@ -19,6 +25,33 @@ public class HomeScreen : MonoBehaviour
         StartCoroutine(ScaleButton(SettingsButton));
         StartCoroutine(ScaleButton(ExitButton));
     }
+
+    void SetActiveScreen(GameObject newActiveScreen)
+    {
+        // Desactivar el screen actual si hay uno activo
+        if (activeScreen != null)
+        {
+            activeScreen.SetActive(false);
+        }
+
+        // Activar el nuevo screen
+        newActiveScreen.SetActive(true);
+        activeScreen = newActiveScreen;
+    }
+
+
+    public void SelectLevelTransition()
+    {
+        audioManager.PlaySFXButton();
+        SetActiveScreen(SelectLevel);
+    }
+
+    public void CloseSelectLevelTransition()
+    {
+        audioManager.PlaySFXButton();
+        SelectLevel.SetActive(false);
+    }
+
 
 
     private IEnumerator ScaleButton(GameObject button)

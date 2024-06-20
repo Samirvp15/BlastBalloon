@@ -10,6 +10,7 @@ TagManager:
   - BombBalloon
   - Bomb
   - Audio
+  - BonusLife
   layers:
   - Default
   - TransparentFX

@@ -15,8 +15,10 @@ public class AudioManager : MonoBehaviour
 
     [Header("----Sound FX")]
     public AudioClip[] popBalloonSounds;
+    public AudioClip bombSFX;
     public AudioClip butttonSFX;
     public AudioClip starCompletedSFX;
+    public AudioClip star2CompletedSFX;
     public AudioClip totalStarsCompletedSFX;
 
 
@@ -50,9 +52,18 @@ public class AudioManager : MonoBehaviour
     {
         soundFXSource.PlayOneShot(starCompletedSFX);
     }
+    public void PlayStar2CompletedSFX()
+    {
+        soundFXSource.PlayOneShot(star2CompletedSFX);
+    }
     public void PlayTotalStarsCompletedSFX()
     {
         soundFXSource.PlayOneShot(totalStarsCompletedSFX);
+    }
+
+    public void PlaySFX_Bomb()
+    {
+        soundFXSource.PlayOneShot(bombSFX);
     }
 
     public void PlaySFX_PopBallon()

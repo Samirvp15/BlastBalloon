@@ -10,13 +10,14 @@ public class SpawnManagerBalloons : MonoBehaviour
     public GameObject[] balloonPrefab;
     public GameObject[] bombBalloonPrefab;
     public GameObject[] bombBalloon;
+    public GameObject balloonBonus;
     private Vector3 spawnPos = new Vector3();
     public float minX = 0;
     public float maxX = 0;
     public float minZ = 0;
     public float maxZ = 0;
     private float startDelay = 1;
-    public float repeatRate = 0.3f;
+    public float repeatRate = 0.30f;
 
     // Variables para controlar la cantidad de objetos instanciados recientemente
     private int maxSameBombBalloons = 2;  // Máximo de globos iguales consecutivos
@@ -53,8 +54,8 @@ public class SpawnManagerBalloons : MonoBehaviour
     public void ResetValues()
     {
         balloonsList.Clear();
-        MoveUp.speed = 0;
-        repeatRate = 0.3f;
+        GameManager.Instance.speed = 0;
+        repeatRate = 0.30f;
 
     }
 
@@ -73,17 +74,23 @@ public class SpawnManagerBalloons : MonoBehaviour
     void Update()
     {
         // Verificar la velocidad continuamente con solo 2 decimales
-        float roundedspeed = Mathf.Round(MoveUp.speed * 100f) / 100f;
+        float roundedspeed = Mathf.Round(GameManager.Instance.speed * 100f) / 100f;
+
+
 
         //Agrega bomba al spawner
-        if (roundedspeed > 7.50f && !balloonsList.Contains(bombBalloon[0]))
+        if (roundedspeed > 8.0f && !balloonsList.Contains(bombBalloon[0]))
         {
+            // SPAWN BONUS LIFE
+            spawnPos = new Vector3(Random.Range(minX, maxX), -5, Random.Range(minZ, maxZ));
+            Instantiate(balloonBonus, spawnPos, Quaternion.identity);
+
             repeatRate = 0.10f;
             balloonsList.AddRange(bombBalloon);
         }
         //Agrega globos bomba al spawner
         // Verifica si la velocidad supera el umbral y si los prefabs de bomba no están ya en la lista
-        else if (roundedspeed > 8.5f && !balloonsList.Contains(bombBalloonPrefab[0]))
+        else if (roundedspeed > 9.2f && !balloonsList.Contains(bombBalloonPrefab[0]))
         {
             repeatRate = 0.05f;
             balloonsList.AddRange(bombBalloonPrefab);
