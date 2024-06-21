@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     public bool Levels_Third_StarIcon = false;
 
     public bool Level1_Completed = false;
-    public bool Level2_Completed = false;
-    public bool Level3_Completed = false;
-    public bool Levels_Completed = false; 
+    //public bool Level2_Completed = false;
+    //public bool Level3_Completed = false;
+    //public bool Levels_Completed = false; 
 
 
 

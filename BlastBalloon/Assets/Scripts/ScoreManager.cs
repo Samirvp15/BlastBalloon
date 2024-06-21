@@ -50,9 +50,6 @@ public class ScoreManager : MonoBehaviour
         }
 
         scoreText.text = "Score: " + scoreCount;
-        //highScoreText.text = "HighScore: " + highScoreCount;
-
-
         //GAME OVER SCREEN
         scoreText_GameOver.text =  "" + scoreCount;
         highScoreText_GameOver.text = "" + highScoreCount;

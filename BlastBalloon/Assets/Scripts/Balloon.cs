@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +40,8 @@ public class Balloon : MonoBehaviour
         if (renderObject != null && renderObject.material != null)
         {
             // Verificar si el objeto tiene un renderer y un material renderObject.material != null
-            if ((gameObject.CompareTag("Balloon") || gameObject.CompareTag("Bomb") || gameObject.CompareTag("BonusLife")) && gameObject.layer != 6)
+            if ((gameObject.CompareTag("Balloon") || gameObject.CompareTag("Bomb") ||
+                gameObject.CompareTag("BonusLife") || gameObject.CompareTag("BonusExtraPoints")) && gameObject.layer != 6)
             {
                 // Asignar el color aleatorio al material del objeto
                 renderObject.material = colorMaterial[colorIndex];
@@ -81,6 +83,30 @@ public class Balloon : MonoBehaviour
         isTouched = false;
     }
 
+    public IEnumerator AddlifeAnimation()
+    {
+        Bonus.livesCount++;
+
+        Bonus.livesText.transform.DOScale(1.8f, 1.5f).SetEase(Ease.OutElastic);
+        yield return new WaitForSeconds(0.1f);
+        Bonus.livesText.transform.DOScale(1.0f, 1.5f).SetEase(Ease.InElastic);
+    }
+
+    public IEnumerator RemovelifeAnimation()
+    {
+        Bonus.livesCount--;
+
+        if (Bonus.livesCount != 0)
+        {
+            Bonus.livesText.transform.DOScale(1.8f, 1.5f).SetEase(Ease.OutElastic);
+            yield return new WaitForSeconds(0.1f);
+            Bonus.livesText.transform.DOScale(1.0f, 1.5f).SetEase(Ease.InElastic);
+        }
+        
+    }
+
+
+
     public void BalloonsGameplay()
     {
         // Verifica si se ha tocado la pantalla (solo funciona en dispositivos táctiles)
@@ -113,6 +139,17 @@ public class Balloon : MonoBehaviour
                         SpawnManagerBalloons.PopBalloon(gameObject.name);                     
 
                     }
+                    else if (CompareTag("BonusExtraPoints"))
+                    {
+
+                        // Desactivar el renderer y el collider
+                        renderObject.enabled = false;
+                        colliderObject.enabled = false;
+
+                        //Aumentar el contador x2
+                        ScoreManager.scoreCount += 2;
+
+                    }
                     else if (CompareTag("BonusLife"))
                     {
 
@@ -120,17 +157,29 @@ public class Balloon : MonoBehaviour
                         renderObject.enabled = false;
                         colliderObject.enabled = false;
 
-                        //Aumentar el contador de puntuación si el globo es normal
-                        Debug.Log("VIDA EXTRAA");
+                        //Aumentar vida
+                        StartCoroutine(AddlifeAnimation());
                        
                     }
                     else if (CompareTag("BombBalloon") || gameObject.CompareTag("Bomb"))
                     {
-                        MainMenu.gamePaused = true;
-                        bombAnimation = GetComponent<BombAnimation>();
-                        
-                        // Play bomb animation
-                        bombAnimation.PlayBombAnimation();
+                        //Disminuir vida
+                        StartCoroutine(RemovelifeAnimation());
+
+                        if (Bonus.livesCount < 1)
+                        {
+                            MainMenu.gamePaused = true;
+                            bombAnimation = GetComponent<BombAnimation>();
+                            // Play bomb animation
+                            bombAnimation.PlayBombAnimation();
+                        }
+                        else
+                        {
+                            // Desactivar el renderer y el collider
+                            renderObject.enabled = false;
+                            colliderObject.enabled = false;
+                        }
+   
                     }
 
                     // Reproducir efectos de sonido y partículas

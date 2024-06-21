@@ -54,6 +54,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             // Grant a reward
+            Bonus.livesCount++;
+
             Time.timeScale = 1;
             MainMenu.gamePaused = false;
             LoadAd();
