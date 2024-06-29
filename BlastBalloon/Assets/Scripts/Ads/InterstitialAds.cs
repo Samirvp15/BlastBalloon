@@ -22,7 +22,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     public void LoadAd()
     {
         // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
-        Debug.Log("Loading INTERSTITiAL Ad: " + _adUnitId);
+        //Debug.Log("Loading INTERSTITiAL Ad: " + _adUnitId);
         Advertisement.Load(_adUnitId, this);
     }
 
@@ -30,7 +30,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     public void ShowAd()
     {
         // Note that if the ad content wasn't previously loaded, this method will fail
-        Debug.Log("Showing Ad: " + _adUnitId);
+        //Debug.Log("Showing Ad: " + _adUnitId);
         Advertisement.Show(_adUnitId, this);
         LoadAd();
     }
@@ -38,17 +38,20 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     // Implement Load Listener and Show Listener interface methods: 
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
+        GameManager.Instance.isOnline = true;
         // Optionally execute code if the Ad Unit successfully loads content.
     }
 
     public void OnUnityAdsFailedToLoad(string _adUnitId, UnityAdsLoadError error, string message)
     {
+        GameManager.Instance.isOnline = false;
         Debug.Log($"Error loading Ad Unit: {_adUnitId} - {error.ToString()} - {message}");
         // Optionally execute code if the Ad Unit fails to load, such as attempting to try again.
     }
 
     public void OnUnityAdsShowFailure(string _adUnitId, UnityAdsShowError error, string message)
     {
+        GameManager.Instance.isOnline = false;
         Debug.Log($"Error showing Ad Unit {_adUnitId}: {error.ToString()} - {message}");
         // Optionally execute code if the Ad Unit fails to show, such as loading another ad.
     }
@@ -56,7 +59,9 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     public void OnUnityAdsShowStart(string _adUnitId) { }
     public void OnUnityAdsShowClick(string _adUnitId) { }
     public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) {
+        LoadAd();
         //Recargar la escena
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       
     }
 }

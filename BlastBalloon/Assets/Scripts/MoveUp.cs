@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class MoveUp : MonoBehaviour
 {
 
-    private float topBound = 20;
+    private float topBound = 24.0f;
     public float spinSpeed;
     private float horizontalAmplitude = 1.5f;  // Amplitud del movimiento horizontal
     private float horizontalPeriod = 3.5f;     // Período del movimiento horizontal
@@ -28,11 +28,11 @@ public class MoveUp : MonoBehaviour
 
         GameManager.Instance.speed = Mathf.Lerp(GameManager.Instance.minSpeed, GameManager.Instance.maxSpeed, getSeconsMaxDifc());
         
-        transform.Translate(Vector3.up * GameManager.Instance.speed * Time.deltaTime);
+        transform.Translate(GameManager.Instance.speed * Time.deltaTime * Vector3.up);
 
         // Movimiento horizontal periódico
         float horizontalOffset = Mathf.Sin(elapsedTime * 2 * Mathf.PI / horizontalPeriod) * horizontalAmplitude;
-        transform.Translate(Vector3.right * horizontalOffset * Time.deltaTime);
+        transform.Translate(horizontalOffset * Time.deltaTime * Vector3.right);
 
 
         //Aumentar la amplitud
@@ -41,7 +41,7 @@ public class MoveUp : MonoBehaviour
         // Incrementar el tiempo transcurrido
         elapsedTime += Time.deltaTime;
 
-        transform.Rotate(Vector3.up * spinSpeed * Time.deltaTime); 
+        transform.Rotate(spinSpeed * Time.deltaTime * Vector3.up); 
 
 
         //ELIMINAR GLOBOS AL PASAR EL LIMITE

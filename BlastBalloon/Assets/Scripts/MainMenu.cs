@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class MainMenu : MonoBehaviour
 {
@@ -85,9 +86,19 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 0;
         gamePaused = true;
 
-        //LEVEL NAME
-        LevelName = GameObject.Find("LevelName").GetComponent<TextMeshProUGUI>();
-        LevelName.text = "Level " + GameManager.Instance.Level;
+        //EXTRA LEVEL NAME
+        if (GameManager.Instance.Level == 4)
+        {
+            LevelName = GameObject.Find("LevelName").GetComponent<TextMeshProUGUI>();
+            LevelName.text = "Level ;)";
+        }
+        else
+        {
+            //LEVEL NAME
+            LevelName = GameObject.Find("LevelName").GetComponent<TextMeshProUGUI>();
+            LevelName.text = "Level " + GameManager.Instance.Level;
+        }
+        
 
     }
     public void closeGamePaused()
@@ -104,15 +115,23 @@ public class MainMenu : MonoBehaviour
         //RESTAURAR VALORES
         GameManager.Instance.countRewardedAdsWatched = 0;
 
-        //Recargar la escena
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        int num = Random.Range(0, 5);
+
+        if (GameManager.Instance.isOnline == true && num == 3)
+        {
+            AdsManager.Instance.interstitialAds.ShowAd();
+        }
+        else
+        {
+            //Recargar la escena
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }  
         
     }
     public void goToMainMenu()
     {
         audioManager.PlaySFXButton();
         SceneManager.LoadScene("HomeMenu");
-
     }
 
 

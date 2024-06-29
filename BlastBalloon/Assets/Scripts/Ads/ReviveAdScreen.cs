@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
@@ -26,12 +25,12 @@ public class ReviveAdScreen : MonoBehaviour
 
     //float currentTime;
     //float startMinutes = 2.0f;
-    public TextMeshProUGUI countRewardedAds;
-    
+    TextMeshProUGUI countRewardedAds;
+    Image addLives;
+
     void InitializePhrases()
     {
         phrases.Add("Watch an ad to respawn and try again!");
-        phrases.Add("Watch an ad to continue and crush it!");
         phrases.Add("Watch an ad to get back in the game!");
         phrases.Add("Watch an ad for another shot!");
         phrases.Add("Watch an ad and jump back in!");
@@ -54,6 +53,7 @@ public class ReviveAdScreen : MonoBehaviour
         noInternet = GameObject.Find("NoInternet").GetComponent<Image>();
         rewardedButtonAd = GameObject.Find("RewardedAdButton").GetComponent<Button>();
         countRewardedAds = GameObject.Find("CountRewardedAds").GetComponent<TextMeshProUGUI>();
+        addLives = GameObject.Find("AddLives").GetComponent<Image>();
 
         maxTimer = countdownTimerCircularBar;
 
@@ -83,6 +83,7 @@ public class ReviveAdScreen : MonoBehaviour
             if ((GameManager.Instance.countRewardedAdsWatched < GameManager.Instance.numberAdstoWatch) && GameManager.Instance.isOnline)
             {
                 countRewardedAds.gameObject.SetActive(true);
+                addLives.gameObject.SetActive(true);
                 //GameManager.Instance.tryLater = false;
                 countRewardedAds.text = "" + (3 - GameManager.Instance.countRewardedAdsWatched);
 
@@ -108,6 +109,7 @@ public class ReviveAdScreen : MonoBehaviour
                 {
                     noInternet.enabled = true;
                     countRewardedAds.gameObject.SetActive(false);
+                    addLives.gameObject.SetActive(false);
                     rewardedButtonAd.gameObject.SetActive(false);
                     CircularBarFilled.gameObject.SetActive(false);
                 }
@@ -115,6 +117,7 @@ public class ReviveAdScreen : MonoBehaviour
                 {
                     noInternet.enabled = false;
                     countRewardedAds.gameObject.SetActive(false);
+                    addLives.gameObject.SetActive(false);
                     rewardedButtonAd.interactable = false;
                     CircularBarFilled.gameObject.SetActive(false);
 

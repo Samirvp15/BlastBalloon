@@ -73,6 +73,16 @@ public class SpawnManagerBalloons : MonoBehaviour
 
     }
 
+    void SpawnBonus(float SpawnYBonusLife, float SpawnYBonusExtraPoints)
+    {
+        // SPAWN BONUS LIFE
+        spawnPos = new Vector3(Random.Range(minX, maxX), SpawnYBonusLife, Random.Range(minZ, maxZ));
+        Instantiate(balloonBonusLife, spawnPos, Quaternion.identity);
+        // SPAWN BONUS EXTRA POINTS
+        spawnPos = new Vector3(Random.Range(minX, maxX), SpawnYBonusExtraPoints, Random.Range(minZ, maxZ));
+        Instantiate(balloonBonusExtraPoints, spawnPos, Quaternion.identity);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -84,12 +94,7 @@ public class SpawnManagerBalloons : MonoBehaviour
         {
             if (roundedspeed > 6.5f && !balloonsList.Contains(bombBalloon[0]))
             {
-                // SPAWN BONUS LIFE
-                spawnPos = new Vector3(Random.Range(minX, maxX), -5, Random.Range(minZ, maxZ));
-                Instantiate(balloonBonusLife, spawnPos, Quaternion.identity);
-                // SPAWN BONUS EXTRA POINTS
-                spawnPos = new Vector3(Random.Range(minX, maxX), -5, Random.Range(minZ, maxZ));
-                Instantiate(balloonBonusExtraPoints, spawnPos, Quaternion.identity);
+                SpawnBonus(-6.0f , -7.0f);
                 //SPAWN BOMBS
                 repeatRate = 0.10f;
                 balloonsList.AddRange(bombBalloon);
@@ -98,11 +103,7 @@ public class SpawnManagerBalloons : MonoBehaviour
             // Verifica si la velocidad supera el umbral y si los prefabs de bomba no están ya en la lista
             else if (roundedspeed > 7.5f && !balloonsList.Contains(bombBalloonPrefab[0]))
             {
-                // SPAWN BONUS LIFE
-                spawnPos = new Vector3(Random.Range(minX, maxX), -5, Random.Range(minZ, maxZ));
-                Instantiate(balloonBonusLife, spawnPos, Quaternion.identity);
-                // SPAWN BONUS EXTRA POINTS
-                spawnPos = new Vector3(Random.Range(minX, maxX), -5, Random.Range(minZ, maxZ));
+                SpawnBonus(-7.0f, -8.0f);
                 Instantiate(balloonBonusExtraPoints, spawnPos, Quaternion.identity);
                 //SPAWN BOMB BALLOONS
                 repeatRate = 0.05f;
@@ -115,9 +116,7 @@ public class SpawnManagerBalloons : MonoBehaviour
         {
             if (roundedspeed > 7.5f && !balloonsList.Contains(bombBalloon[0]))
             {
-                // SPAWN BONUS LIFE
-                spawnPos = new Vector3(Random.Range(minX, maxX), -5, Random.Range(minZ, maxZ));
-                Instantiate(balloonBonusLife, spawnPos, Quaternion.identity);
+                SpawnBonus(-6.0f, -7.0f);
                 //SPAWN BOMBS
                 repeatRate = 0.10f;
                 balloonsList.AddRange(bombBalloon);
@@ -126,6 +125,7 @@ public class SpawnManagerBalloons : MonoBehaviour
             // Verifica si la velocidad supera el umbral y si los prefabs de bomba no están ya en la lista
             else if (roundedspeed > 8.0f && !balloonsList.Contains(bombBalloonPrefab[0]))
             {
+                SpawnBonus(-7.5f, -8.0f);
                 //SPAWN BOMB BALLOONS
                 repeatRate = 0.05f;
                 balloonsList.AddRange(bombBalloonPrefab);
@@ -137,9 +137,7 @@ public class SpawnManagerBalloons : MonoBehaviour
         {
             if (roundedspeed > 7.5f && !balloonsList.Contains(bombBalloon[0]))
             {
-                // SPAWN BONUS LIFE
-                spawnPos = new Vector3(Random.Range(minX, maxX), -5, Random.Range(minZ, maxZ));
-                Instantiate(balloonBonusLife, spawnPos, Quaternion.identity);
+                SpawnBonus(-6.0f, -7.0f);
                 //SPAWN BOMBS
                 repeatRate = 0.10f;
                 balloonsList.AddRange(bombBalloon);
@@ -148,6 +146,7 @@ public class SpawnManagerBalloons : MonoBehaviour
             // Verifica si la velocidad supera el umbral y si los prefabs de bomba no están ya en la lista
             else if (roundedspeed > 8.5f && !balloonsList.Contains(bombBalloonPrefab[0]))
             {
+                SpawnBonus(-6.5f, -7.5f);
                 //SPAWN BOMB BALLOONS
                 repeatRate = 0.05f;
                 balloonsList.AddRange(bombBalloonPrefab);

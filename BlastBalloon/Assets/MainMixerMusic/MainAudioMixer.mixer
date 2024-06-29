@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-4395044028276207949
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 45860941e880b93469b477b87d1e7c96
+  m_EffectName: Attenuation
+  m_MixLevel: 102a13deb2bd0c84d8abdcd263019b1b
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-2416269708852987145
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -15,6 +29,25 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 161036164510846354}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &-1866565886349377610
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ExtraGameMusic
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: cc2977106fa934243bf6a967bd391eb0
+  m_Children: []
+  m_Volume: 81aa154f098e9344b965c5ce51d3784a
+  m_Pitch: 7b4881bf0324cb647b12d7e5fa75fe87
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -4395044028276207949}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -43,6 +76,7 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 339a0f14158cf8442a661e2aca3893e3
   m_Children:
+  - {fileID: -1866565886349377610}
   - {fileID: -2416269708852987145}
   m_Volume: 15aaa7d4788143341b7d0657b57ccbf7
   m_Pitch: f186b21a29eefb74c9a846fa687362b2
@@ -81,6 +115,7 @@ AudioMixerController:
     - 339a0f14158cf8442a661e2aca3893e3
     - 578ec8e19b9db7842ad6c260b2af14c1
     - a1da032c590de7a4ba15fc3e97281c97
+    - cc2977106fa934243bf6a967bd391eb0
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}

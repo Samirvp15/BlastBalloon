@@ -6,6 +6,8 @@ using UnityEngine;
 public class HomeScreen : MonoBehaviour
 {
     public GameObject SelectLevel;
+    public GameObject SelectBalloon;
+    public GameObject HowToPlay;
     public GameObject activeScreen;
 
     public GameObject StartButton;
@@ -39,6 +41,11 @@ public class HomeScreen : MonoBehaviour
         activeScreen = newActiveScreen;
     }
 
+    public void HowToPlayScreen()
+    {
+        audioManager.PlaySFXButton();
+        SetActiveScreen(HowToPlay);
+    }
 
     public void SelectLevelTransition()
     {
@@ -50,6 +57,18 @@ public class HomeScreen : MonoBehaviour
     {
         audioManager.PlaySFXButton();
         SelectLevel.SetActive(false);
+    }
+
+    public void SelectBalloonExtraScene()
+    {
+        audioManager.PlaySFXButton();
+        SetActiveScreen(SelectBalloon);
+    }
+
+    public void CloseSelectBalloonExtraScene()
+    {
+        audioManager.PlaySFXButton();
+        SelectBalloon.SetActive(false);
     }
 
 

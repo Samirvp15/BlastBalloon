@@ -7,6 +7,7 @@ public class Balloon : MonoBehaviour
 {
     public ParticleSystem explosionParticle;
     public ParticleSystem ConfettiParticles;
+    public ParticleSystem StarsParticles;
     private Renderer renderObject;
     public Material[] colorMaterial;
     public Material[] colorMaterialBomb;
@@ -25,6 +26,7 @@ public class Balloon : MonoBehaviour
         //COMPONENTES UNICOS PARA CADA INSTANCIA DE OBJETO
         explosionParticle = transform.Find("BoomParticles").GetComponent<ParticleSystem>();
         ConfettiParticles = transform.Find("ConfettiParticles").GetComponent<ParticleSystem>();
+
         renderObject = GetComponent<Renderer>();
         colliderObject = GetComponent<Collider>();
         
@@ -87,7 +89,7 @@ public class Balloon : MonoBehaviour
     {
         Bonus.livesCount++;
 
-        Bonus.livesText.transform.DOScale(1.8f, 1.5f).SetEase(Ease.OutElastic);
+        Bonus.livesText.transform.DOScale(1.5f, 1.5f).SetEase(Ease.OutElastic);
         yield return new WaitForSeconds(0.1f);
         Bonus.livesText.transform.DOScale(1.0f, 1.5f).SetEase(Ease.InElastic);
     }
@@ -98,7 +100,7 @@ public class Balloon : MonoBehaviour
 
         if (Bonus.livesCount != 0)
         {
-            Bonus.livesText.transform.DOScale(1.8f, 1.5f).SetEase(Ease.OutElastic);
+            Bonus.livesText.transform.DOScale(1.5f, 1.5f).SetEase(Ease.OutElastic);
             yield return new WaitForSeconds(0.1f);
             Bonus.livesText.transform.DOScale(1.0f, 1.5f).SetEase(Ease.InElastic);
         }
@@ -132,22 +134,35 @@ public class Balloon : MonoBehaviour
                         // Desactivar el renderer y el collider
                         renderObject.enabled = false;
                         colliderObject.enabled = false;
-
-                        //Aumentar el contador de puntuación si el globo es normal
-                        ScoreManager.scoreCount++;
+                        StarsParticles = transform.Find("StarsParticles").GetComponent<ParticleSystem>();
+                        //Aumentar el contador x2
+                        if (Bonus.onTimer == true)
+                        {
+                            ScoreManager.scoreCount += 2;
+                            StarsParticles.Play();
+                        }
+                        else
+                        {
+                            //Aumentar el contador de puntuación si el globo es normal
+                            ScoreManager.scoreCount++;
+                        }
+                        
                         //AUMENTAR EL CONTADOR DEL MISMO GLOBO REVENTADO PARA GAMEOVERSCREEN
                         SpawnManagerBalloons.PopBalloon(gameObject.name);                     
 
                     }
                     else if (CompareTag("BonusExtraPoints"))
                     {
-
+                        StarsParticles = transform.Find("StarsParticles").GetComponent<ParticleSystem>();
                         // Desactivar el renderer y el collider
                         renderObject.enabled = false;
                         colliderObject.enabled = false;
 
+                        audioManager.PlayBonusSFX();
                         //Aumentar el contador x2
                         ScoreManager.scoreCount += 2;
+                        Bonus.onTimer = true;
+                        StarsParticles.Play();
 
                     }
                     else if (CompareTag("BonusLife"))
@@ -157,13 +172,36 @@ public class Balloon : MonoBehaviour
                         renderObject.enabled = false;
                         colliderObject.enabled = false;
 
+                        audioManager.PlayBonusSFX();
                         //Aumentar vida
                         StartCoroutine(AddlifeAnimation());
                        
                     }
-                    else if (CompareTag("BombBalloon") || gameObject.CompareTag("Bomb"))
+                    else if (CompareTag("BombBalloon"))
                     {
-                        //Disminuir vida
+                        //Disminuir contador de vida
+                        StartCoroutine(RemovelifeAnimation());
+
+                        if (Bonus.livesCount < 1)
+                        {
+                            MainMenu.gamePaused = true;
+                            bombAnimation = GetComponent<BombAnimation>();
+                            // Play bomb animation
+                            bombAnimation.PlayBombAnimation();
+                        }
+                        else
+                        {
+                            // Desactivar el renderer y el collider
+                            renderObject.enabled = false;
+                            transform.Find("Bomb").gameObject.SetActive(false);
+                            colliderObject.enabled = false;
+                            audioManager.PlaySFX_Bomb();
+                        }
+   
+                    }
+                    else if (gameObject.CompareTag("Bomb"))
+                    {
+                        //Disminuir contador de vida
                         StartCoroutine(RemovelifeAnimation());
 
                         if (Bonus.livesCount < 1)
@@ -178,14 +216,17 @@ public class Balloon : MonoBehaviour
                             // Desactivar el renderer y el collider
                             renderObject.enabled = false;
                             colliderObject.enabled = false;
+                            audioManager.PlaySFX_Bomb();
                         }
-   
+
                     }
+
 
                     // Reproducir efectos de sonido y partículas
                     audioManager.PlaySFX_PopBallon();
                     explosionParticle.Play();
                     ConfettiParticles.Play();
+                    
                 }
             }
         }

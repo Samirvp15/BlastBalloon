@@ -9,6 +9,7 @@ public class BombAnimation : MonoBehaviour
     private Animator bombAnimator;
     private MainMenu Canvas;
     private Renderer renderObject;
+    //private Renderer renderBombObject;
     private Collider colliderObject;
     AudioManager audioManager;
 
@@ -18,6 +19,7 @@ public class BombAnimation : MonoBehaviour
         Canvas = GameObject.Find("Canvas").GetComponent<MainMenu>();
         bombAnimator = GetComponent<Animator>();
         renderObject = GetComponent<Renderer>();
+        //renderBombObject = transform.Find("Bomb").GetComponent<Renderer>();
         colliderObject = GetComponent<Collider>();
         bombAnimator.enabled = false;
     }
@@ -48,15 +50,28 @@ public class BombAnimation : MonoBehaviour
             yield return null;
         }
         audioManager.PlaySFX_Bomb();
+
         // Disable the renderer and collider after the animation
-        renderObject.enabled = false;
-        colliderObject.enabled = false;
+        if (gameObject.CompareTag("BombBalloon"))
+        {
+            renderObject.enabled = false;
+            //renderBombObject.enabled = false;
+            transform.Find("Bomb").gameObject.SetActive(false);    
+            colliderObject.enabled = false;
+        }
+        else
+        {
+            renderObject.enabled = false;
+            colliderObject.enabled = false;
+        }
+        
 
         // Resume the scene
         Time.timeScale = 1f;
         MainMenu.gamePaused = false;
         bombAnimator.enabled = false;
 
+        yield return new WaitForSeconds(0.8f);
         // Show revive ad screen
         Canvas.ShowReviveAdScreen();
     }

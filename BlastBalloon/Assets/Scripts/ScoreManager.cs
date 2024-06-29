@@ -49,7 +49,7 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.SetInt("Key_HighScore", highScoreCount);
         }
 
-        scoreText.text = "Score: " + scoreCount;
+        scoreText.text = "" + scoreCount;
         //GAME OVER SCREEN
         scoreText_GameOver.text =  "" + scoreCount;
         highScoreText_GameOver.text = "" + highScoreCount;

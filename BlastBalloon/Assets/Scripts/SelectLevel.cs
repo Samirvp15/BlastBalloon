@@ -10,6 +10,7 @@ public class SelectLevel : MonoBehaviour
 
     Button Level2Button;
     Button Level3Button;
+    public GameObject LevelExtra;
 
     public GameObject Level_1_First_StarIcon;
     public GameObject Level_1_Second_StarIcon;
@@ -35,19 +36,11 @@ public class SelectLevel : MonoBehaviour
     public int Level3_Second_StarIcon = 0;
 
 
-    AudioManager audioManager;
-
     // Start is called before the first frame update
     void Start()
     {
         Level2Button = GameObject.Find("ButtonL2").GetComponent<Button>();
         Level3Button = GameObject.Find("ButtonL3").GetComponent<Button>();
-
-        //Level2Button.interactable = false;
-        //Level3Button.interactable = false;
-
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
 
         //LOAD LEVELS COMPLETED INFO
         Level1_Completed_Static = PlayerPrefs.GetInt("Level1_Completed", 0);
@@ -65,7 +58,8 @@ public class SelectLevel : MonoBehaviour
         StaticStarsCompleted();
 
         GameManager.Instance.Level1_Completed = true;
-        
+
+      
 
         /*if (Level3_Completed_Static == 0)
         {
@@ -137,11 +131,6 @@ public class SelectLevel : MonoBehaviour
 
         }*/
 
-
-        
-        //PlayerPrefs.Save();
-
-
     }
 
 
@@ -210,6 +199,7 @@ public class SelectLevel : MonoBehaviour
         //LEVEL 3
         if (Level3_Completed_Static == 1)
         {
+            LevelExtra.SetActive(true);
             Three_Static_Stars(Level_3_First_StarIcon, Level_3_Second_StarIcon, Level_3_Third_StarIcon);
         }
         else if (Level3_Second_StarIcon == 1)
@@ -271,8 +261,6 @@ public class SelectLevel : MonoBehaviour
     }*/
 
 
-
-
     public void PlayGame() {
         SceneManager.LoadScene("GameScene");
         GameManager.Instance.countRewardedAdsWatched = 0;
@@ -281,10 +269,10 @@ public class SelectLevel : MonoBehaviour
     public void Level_1()
     {
         GameManager.Instance.Level = 1;
-        GameManager.Instance.maxPoints = 150;
+        GameManager.Instance.maxPoints = 100;
         GameManager.Instance.minSpeed = 6.0f;
-        GameManager.Instance.maxSpeed = 9.0f;
-        GameManager.Instance.seconsMaxDifc = 120;
+        GameManager.Instance.maxSpeed = 8.0f;
+        GameManager.Instance.seconsMaxDifc = 100;
         PlayGame();
 
     }
@@ -292,24 +280,22 @@ public class SelectLevel : MonoBehaviour
     public void Level_2()
     {
         GameManager.Instance.Level = 2;
-        GameManager.Instance.maxPoints = 300;
+        GameManager.Instance.maxPoints = 250;
         GameManager.Instance.minSpeed = 7.0f;
-        GameManager.Instance.maxSpeed = 10.0f;
-        GameManager.Instance.seconsMaxDifc = 150;
+        GameManager.Instance.maxSpeed = 9.0f;
+        GameManager.Instance.seconsMaxDifc = 120;
         PlayGame();
     }
 
     public void Level_3()
     {
-         //300 point
          GameManager.Instance.Level = 3;
-         GameManager.Instance.maxPoints = 400;
-         GameManager.Instance.minSpeed = 7.5f;
-         GameManager.Instance.maxSpeed = 11.0f;
-         GameManager.Instance.seconsMaxDifc = 180;
-        PlayGame();
+         GameManager.Instance.maxPoints = 350;
+         GameManager.Instance.minSpeed = 7.0f;
+         GameManager.Instance.maxSpeed = 10.0f;
+         GameManager.Instance.seconsMaxDifc = 150;
+         PlayGame();
     }
-
 
 }
 

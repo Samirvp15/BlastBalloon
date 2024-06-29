@@ -8,10 +8,13 @@ public class AudioManager : MonoBehaviour
     [Header("-----Music Source")]
     [SerializeField] AudioSource homeMusicSource;
     [SerializeField] AudioSource gameMusicSource;
+    [SerializeField] AudioSource extraGameMusicSource;
     [SerializeField] AudioSource soundFXSource;
 
     public AudioClip gameMusic;
     public AudioClip homeMusic;
+    public AudioClip extraGameMusic;
+
 
     [Header("----Sound FX")]
     public AudioClip[] popBalloonSounds;
@@ -20,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip starCompletedSFX;
     public AudioClip star2CompletedSFX;
     public AudioClip totalStarsCompletedSFX;
+    public AudioClip BonusSFX;
 
 
     // Start is called before the first frame update
@@ -27,6 +31,7 @@ public class AudioManager : MonoBehaviour
     {
         gameMusicSource.clip = gameMusic;
         homeMusicSource.clip = homeMusic;
+        extraGameMusicSource.clip = extraGameMusic;
 
         if (SceneManager.GetActiveScene().name == "HomeMenu")
         {
@@ -35,18 +40,21 @@ public class AudioManager : MonoBehaviour
         {
             gameMusicSource.Play();
         }
-       
+        else if (SceneManager.GetActiveScene().name == "ExtraGameScene")
+        {
+            extraGameMusicSource.Play();
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void PlaySFXButton()
     {
         soundFXSource.PlayOneShot(butttonSFX);
+    }
+    public void PlayBonusSFX()
+    {
+        soundFXSource.PlayOneShot(BonusSFX);
     }
     public void PlayStarCompletedSFX()
     {

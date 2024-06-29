@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 6116718876420010688, guid: a52e66e93e832064cb3591e9e9489c31, type: 3}
   ConfettiParticles: {fileID: 8205635609101549336, guid: 211d84194a356f746a4977f1c193f5a4, type: 3}
+  StarsParticles: {fileID: 0}
   colorMaterial:
   - {fileID: 2100000, guid: 82bb3e2bad9330e4c97a687e69471217, type: 2}
   - {fileID: 2100000, guid: 933d7a3aeaab8b14d88be926b708d62d, type: 2}
@@ -139,8 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40c09f23a6b99f4c96cf12a361c38e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 7.5
-  maxSpeed: 11
   spinSpeed: 0
 --- !u!65 &8667216891412248723
 BoxCollider:
@@ -157,7 +156,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
