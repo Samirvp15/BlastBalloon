@@ -8,16 +8,15 @@ public class SpawnBombsExtraLevel : MonoBehaviour
 
     public float minX = 0;
     public float maxX = 0;
- 
+
     private Vector3 spawnPos = new Vector3();
     public GameObject[] BombBalloons;
 
     void Start()
     {
-        InvokeRepeating("SpawnBalloon", 1.0f, 0.30f);
+        InvokeRepeating(nameof(SpawnBalloon), 1.0f, 0.4f);
     }
 
-   
 
     void SpawnBalloon()
     {

@@ -290,10 +290,10 @@ public class SelectLevel : MonoBehaviour
     public void Level_3()
     {
          GameManager.Instance.Level = 3;
-         GameManager.Instance.maxPoints = 350;
+         GameManager.Instance.maxPoints = 400;
          GameManager.Instance.minSpeed = 7.0f;
          GameManager.Instance.maxSpeed = 10.0f;
-         GameManager.Instance.seconsMaxDifc = 150;
+         GameManager.Instance.seconsMaxDifc = 160;
          PlayGame();
     }
 

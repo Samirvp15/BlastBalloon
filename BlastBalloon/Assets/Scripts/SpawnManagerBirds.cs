@@ -20,14 +20,10 @@ public class SpawnManagerBirds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnBirds", startDelay, repeatRate);
+        InvokeRepeating(nameof(SpawnBirds), startDelay, repeatRate);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void SpawnBirds()
     {
         if (MainMenu.gameOver == false)

@@ -8,7 +8,7 @@ public class MoveDown : MonoBehaviour
     private float bottomBound = -12.0f;
     private float seconsMaxDifcExtraLevel = 120.0f;
     private float speedBombs;
-    private float minSpeedBombs = 6.5f;
+    private float minSpeedBombs = 5.0f;
     private float maxSpeedBombs = 11.0f;
     public bool collisionTouch = false;
 
@@ -75,8 +75,9 @@ public class MoveDown : MonoBehaviour
 
         speedBombs = Mathf.Lerp(minSpeedBombs, maxSpeedBombs, GetSeconsMaxDifcExtraLevel());
 
+
         transform.Translate(speedBombs * Time.deltaTime * Vector3.down);
-        //transform.Rotate(spinSpeedBombs * Time.deltaTime * Vector3.up);
+       
         
         //ELIMINAR Bombs AL PASAR EL LIMITE
         if (transform.position.y < bottomBound && gameObject.CompareTag("BombBalloon"))

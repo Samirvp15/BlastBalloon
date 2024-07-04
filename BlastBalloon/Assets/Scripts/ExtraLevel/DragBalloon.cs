@@ -17,10 +17,12 @@ public class DragBalloon : MonoBehaviour
     private Renderer particleRenderer;
     private bool isDragging = false;
 
+    AudioManager audioManager;
 
     void Start()
     {
-        
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
         zCoordinate = Camera.main.WorldToScreenPoint(transform.position).z;
         transform.Rotate(Vector3.up, 180f);
 
@@ -45,10 +47,18 @@ public class DragBalloon : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-       
-        UIExtraLevel.livesCount--;
-        explosionParticle.Play();
-        ConfettiParticles.Play();
+        if (other.CompareTag("BombBalloon"))
+        {
+            UIExtraLevel.livesCount--;
+            explosionParticle.Play();
+            ConfettiParticles.Play();
+        }else if (other.CompareTag("PointExtraLevel"))
+        {
+            UIExtraLevel.pointsCount++;
+            audioManager.PlaySFX_PopBallon();
+            Destroy(other.gameObject);
+        }
+           
 
 
     }

@@ -8,26 +8,40 @@ public class UIExtraLevel : MonoBehaviour
 {
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI pointsText;
     public static int livesCount;
+    public static int pointsCount;
 
+    private int bestPoints;
     private float timeElapsed;
     private float highScore;
     private bool isRunning = true;
 
+
     public TextMeshProUGUI score_GameOver;
     public TextMeshProUGUI highScore_GameOver;
+    public TextMeshProUGUI points_GameOver;
+    public TextMeshProUGUI bestPoints_GameOver;
     //AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
 
         livesText = GameObject.Find("Lives").GetComponent<TextMeshProUGUI>();
+        pointsText = GameObject.Find("Points").GetComponent<TextMeshProUGUI>();
         livesCount = 3;
+        pointsCount = 0;
+
         timeElapsed = 0f;
 
         if (PlayerPrefs.HasKey("Key_HighScoreExtraGame"))
         {
-            highScore = PlayerPrefs.GetFloat("Key_HighScoreExtraGame");
+            highScore = PlayerPrefs.GetFloat("Key_HighScoreExtraGame",0.0f);
+        }
+        
+        if (PlayerPrefs.HasKey("Key_BestPointsExtraGame"))
+        {
+            bestPoints = PlayerPrefs.GetInt("Key_BestPointsExtraGame",0);
         }
 
     }
@@ -54,6 +68,14 @@ public class UIExtraLevel : MonoBehaviour
 
                 //LIVES
                 livesText.text = "" + livesCount;
+                //POINTS
+                pointsText.text = "" + pointsCount;
+
+                if (pointsCount > bestPoints)
+                {
+                    bestPoints = pointsCount;
+                    PlayerPrefs.SetInt("Key_BestPointsExtraGame", bestPoints);
+                }
 
                 if (timeElapsed > highScore)
                 {
@@ -61,9 +83,14 @@ public class UIExtraLevel : MonoBehaviour
                     PlayerPrefs.SetFloat("Key_HighScoreExtraGame", highScore);
                 }
 
+
+
                 //GAME OVER SCREEN
                 score_GameOver.text = "" + Mathf.FloorToInt(timeElapsed);
                 highScore_GameOver.text = "" + Mathf.FloorToInt(highScore);
+                points_GameOver.text = "" + pointsCount;
+                bestPoints_GameOver.text = "" + bestPoints;
+
 
 
                 //SCORE

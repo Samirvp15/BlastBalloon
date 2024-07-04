@@ -29,12 +29,6 @@ public class Settings : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetGameMusicVolume() {
         float musicVolume = GameMusicSlider.value;
         audioMixer.SetFloat("GameMusic", Mathf.Log10(musicVolume)*20);

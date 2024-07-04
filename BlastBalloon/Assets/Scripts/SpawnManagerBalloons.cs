@@ -212,11 +212,6 @@ public class SpawnManagerBalloons : MonoBehaviour
             poppedBalloonsCount[balloonType] += 1;  //Incrementar el contador del tipo de globo
             ScoreManager.PoppedBallonCountText(balloonType, poppedBalloonsCount[balloonType]);
         }
-        else
-        {
-            Debug.LogWarning("Balloon type not found: " + balloonType);
-        }
-
     }
 
 }

@@ -12,6 +12,7 @@ TagManager:
   - Audio
   - BonusLife
   - BonusExtraPoints
+  - PointExtraLevel
   layers:
   - Default
   - TransparentFX

@@ -34,7 +34,6 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
     public void OnInitializationComplete()
     {
         GameManager.Instance.isOnline = true;
-        Debug.Log("Unity Ads initialization complete.");
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
